@@ -8,15 +8,10 @@
 </head>
 <body>
     <div class="layout layout-canvas-g">
-        <div class="section">
-            <div class="columns col1">
-                <div data-type="slot" data-key="col1">
-                    <h1 class="text-3xl font-bold underline">
-                        Hello world!
-                    </h1>
-                </div>
-
-            </div>
+        <div id="app">
+            <button @click="count++">
+              Count is: {{ count }}
+            </button>
         </div>
     </div>
 </body>
