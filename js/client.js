@@ -1,9 +1,11 @@
-import { createApp } from 'vue'
+<script>
+  const { createApp } = Vue
 
-createApp({
-  data() {
-    return {
-      count: 0
+  createApp({
+    data() {
+      return {
+        message: 'Hello Vue!'
+      }
     }
-  }
-}).mount('#app')
+  }).mount('#app');
+</script>
