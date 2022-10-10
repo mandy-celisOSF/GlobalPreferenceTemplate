@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="https://raw.githubusercontent.com/Pranav-NarayanOSF/GlobalPreferenceTemplate/basicDevelopment/js/client.js"></script>
+    <!--<script src="https://raw.githubusercontent.com/Pranav-NarayanOSF/GlobalPreferenceTemplate/basicDevelopment/js/client.js"></script>-->
 </head>
 <body>
     <div class="layout layout-canvas-g">
@@ -14,5 +14,16 @@
         </div>
     </div>
 </body>
+<script>
+    const { createApp } = Vue
+  
+    createApp({
+      data() {
+        return {
+          message: 'Hello Vue!'
+        }
+      }
+    }).mount('#app');
+  </script>
 
 </html>
