@@ -106,10 +106,10 @@
               this.urlParams = urlParams;
             }).finally(()=>{
               this.setJSONConfig(this.urlParams).then((jsonConfig)=>{
-                this.jsonConfig = jsonConfig;
+                this.base_config = jsonConfig;
               });  
             })
-            console.log(this.jsonConfig);
+            console.log(this.base_config);
           }
         })
         
