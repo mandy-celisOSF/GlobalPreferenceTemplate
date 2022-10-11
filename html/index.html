@@ -49,52 +49,56 @@
             setJSONConfig(urlParams){
               console.log('er',urlParams);
               return new Promise(function(resolve,reject){
-                  let jsonObj = {
-                    "customer_id" : this.urlParams.get('customer_id'),
-                    "customer_locale" : this.urlParams.get('customer_locale'),
-                    "subscriber_BU" : this.urlParams.get('customer_buId'),
-                    "captcha" : {
-                      "key": "google_site_key"
-                    },
-                    "preferences_target_de" : {
-                      "key":"3419051A-7B43-4B15-A810-F8A4615E9CD0",
-                      "fieldMap":{
-                          "bu_Id":"BU_ID",
-                          "preference_ID":"Preference_ID",
-                          "value":"Value"
+                  try{
+                    let jsonObj = {
+                      "customer_id" : this.urlParams.get('customer_id'),
+                      "customer_locale" : this.urlParams.get('customer_locale'),
+                      "subscriber_BU" : this.urlParams.get('customer_buId'),
+                      "captcha" : {
+                        "key": "google_site_key"
+                      },
+                      "preferences_target_de" : {
+                        "key":"3419051A-7B43-4B15-A810-F8A4615E9CD0",
+                        "fieldMap":{
+                            "bu_Id":"BU_ID",
+                            "preference_ID":"Preference_ID",
+                            "value":"Value"
+                        }
+                      },
+                      "master_preferences_de": {
+                        "key":"3419051A-7B43-4B15-A810-F8A4615E9CD0",
+                        "fieldMap":{
+                          "BU_ID" : "BU_ID",
+                          "Preference_ID" : "Preference_ID",
+                          "Preference_Type":"Preference_Type",
+                          "Default_Values" : "Default_Values"
+                        }
+                      },
+                      "master_customer_de" : {
+                        "key":"ABCE2B54-FE0E-46FC-85BD-EC3F4C486D7D",
+                        "fields":["Customer_ID","FirstName","LastName","EmailAddress"]
+                      },
+                      "logo_url":"https://osf.digital/library/media/osf/digital/common/header/osf_digital_logo.svg?h=60&la=en-AU&w=366&hash=C9F446367B2B20D20C0DDCB57814F986C5324002",
+                      "header_color":"white",
+                      "footer_color":"#389ab6",
+                      "footer_links" : [{
+                          label : "",
+                          url : "",
+                          icon_url : ""
+                      }],
+                      "external_end_point_target_de" : null,
+                      "external_service":{
+                          "authURL":"",
+                          "restURL":"",
+                          "endPoint" : "",
+                          "clientId" : "",
+                          "clientSecret":""
                       }
-                    },
-                    "master_preferences_de": {
-                      "key":"3419051A-7B43-4B15-A810-F8A4615E9CD0",
-                      "fieldMap":{
-                        "BU_ID" : "BU_ID",
-                        "Preference_ID" : "Preference_ID",
-                        "Preference_Type":"Preference_Type",
-                        "Default_Values" : "Default_Values"
-                      }
-                    },
-                    "master_customer_de" : {
-                      "key":"ABCE2B54-FE0E-46FC-85BD-EC3F4C486D7D",
-                      "fields":["Customer_ID","FirstName","LastName","EmailAddress"]
-                    },
-                    "logo_url":"https://osf.digital/library/media/osf/digital/common/header/osf_digital_logo.svg?h=60&la=en-AU&w=366&hash=C9F446367B2B20D20C0DDCB57814F986C5324002",
-                    "header_color":"white",
-                    "footer_color":"#389ab6",
-                    "footer_links" : [{
-                        label : "",
-                        url : "",
-                        icon_url : ""
-                    }],
-                    "external_end_point_target_de" : null,
-                    "external_service":{
-                        "authURL":"",
-                        "restURL":"",
-                        "endPoint" : "",
-                        "clientId" : "",
-                        "clientSecret":""
                     }
+                    resolve(jsonObj); 
+                  }catch(ex){
+                    reject(ex);
                   }
-                  return jsonObj;
               })
             }
           },
