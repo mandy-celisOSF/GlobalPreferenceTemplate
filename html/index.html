@@ -37,11 +37,18 @@
             },
             getBaseData(){
               const headers = { "Content-Type": "application/json" };
-
+              const body = {
+                customer_id : this.base_config.customer_id,
+                master_preference_de : this.base_config.master_preferences_de,
+                preferences_de : this.base_config.preferences_target_de,
+                locale: this.base_config.customer_locale,
+                buId: this.base_config.subscriber_BU,
+                master_customer_de : this.base_config.master_customer_de
+              }
                 fetch(this.base_config.pref_retrievalURL, {
                   method: 'POST', // or 'PUT'
                   headers: headers,
-                  body: JSON.stringify(this.base_config),
+                  body: JSON.stringify(body),
                 })
                   .then((response) => response.json())
                   .then((data) => {
