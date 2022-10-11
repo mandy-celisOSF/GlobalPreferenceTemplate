@@ -39,7 +39,7 @@
               console.log('jsobn',this.base_config);
               const headers = { "Content-Type": "application/json" };
 
-                fetch('https://example.com/profile', {
+                fetch(this.base_config.pref_retrievalURL, {
                   method: 'POST', // or 'PUT'
                   headers: headers,
                   body: JSON.stringify(this.base_config),
