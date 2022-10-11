@@ -15,14 +15,16 @@
         </div>
     </body>
     <script>
-        const { createApp } = Vue
-    
-        createApp({
-        data() {
+        import { createApp } from 'vue'
+
+        const app = createApp({
+          data() {
             return {
-            message: 'Hello Vue!'
+              message: "New Message"
             }
-        }
-        }).mount('#app');
+          }
+        })
+        
+        app.mount('#app')
     </script>
 </html>
