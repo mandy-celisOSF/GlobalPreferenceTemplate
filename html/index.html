@@ -51,9 +51,9 @@
               return new Promise(function(resolve,reject){
                   try{
                     let jsonObj = {
-                      "customer_id" : this.urlParams.get('customer_id'),
-                      "customer_locale" : this.urlParams.get('customer_locale'),
-                      "subscriber_BU" : this.urlParams.get('customer_buId'),
+                      "customer_id" : urlParams.get('customer_id'),
+                      "customer_locale" : urlParams.get('customer_locale'),
+                      "subscriber_BU" : urlParams.get('customer_buId'),
                       "captcha" : {
                         "key": "google_site_key"
                       },
