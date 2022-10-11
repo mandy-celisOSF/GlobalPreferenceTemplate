@@ -38,9 +38,20 @@
             getBaseData(){
               console.log('jsobn',this.base_config);
               const headers = { "Content-Type": "application/json" };
-              fetch("pref_retrievalURL", { headers })
-                .then(response => response.json())
-                .then(data => (this.base_data = data));
+
+                fetch('https://example.com/profile', {
+                  method: 'POST', // or 'PUT'
+                  headers: headers,
+                  body: JSON.stringify(this.base_config),
+                })
+                  .then((response) => response.json())
+                  .then((data) => {
+                    console.log('Success:', data);
+                  })
+                  .catch((error) => {
+                    console.error('Error:', error);
+                  });
+                
             },
             setURLParams(){
                 return new Promise((resolve,reject)=>{
