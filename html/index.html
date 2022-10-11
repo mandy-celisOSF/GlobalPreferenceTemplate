@@ -105,12 +105,12 @@
           mounted() {
             this.setURLParams().then((urlParams)=>{
               this.urlParams = urlParams;
-            }).error((err)=>{
+            }).catch((err)=>{
               console.log(err);
             }).finally(()=>{
               this.setJSONConfig(this.urlParams).then((jsonConfig)=>{
                 this.base_config = jsonConfig;
-              }).error((err)=>{
+              }).catch((err)=>{
                 console.log(err);
               }).finally(()=>{
                 console.log(this.base_config);
