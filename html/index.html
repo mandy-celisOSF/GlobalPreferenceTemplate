@@ -27,7 +27,8 @@
             return {
               message: "New Message",
               base_config : undefined,
-              urlParams : undefined
+              urlParams : undefined,
+              base_data : undefined
             }
           },
           methods: {
@@ -36,6 +37,10 @@
             },
             getBaseData(){
               console.log('jsobn',this.base_config);
+              const headers = { "Content-Type": "application/json" };
+              fetch("pref_retrievalURL", { headers })
+                .then(response => response.json())
+                .then(data => (this.base_data = data));
             },
             setURLParams(){
                 return new Promise((resolve,reject)=>{
@@ -54,6 +59,8 @@
                       "customer_id" : urlParams.get('customer_id'),
                       "customer_locale" : urlParams.get('customer_locale'),
                       "subscriber_BU" : urlParams.get('customer_buId'),
+                      "pref_retrievalURL":"https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/sxvpd3duwja",
+                      "pref_processing_URL":"https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/nk4ctlggevc",
                       "captcha" : {
                         "key": "google_site_key"
                       },
