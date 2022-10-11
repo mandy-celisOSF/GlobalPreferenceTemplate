@@ -55,7 +55,7 @@
                 })
                   .then((response) => response.json())
                   .then((data) => {
-                    console.log('Success:', data);
+                    this.base_data = data;
                   })
                   .catch((error) => {
                     console.log('Error:', error);
