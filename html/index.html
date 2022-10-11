@@ -1,28 +1,246 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-</head>
-<body>
-    <div class="layout layout-canvas-g">
-        <div id="app"> 
-            {{message}}
-        </div>
-    </div>
-</body>
-<script>
-    const { createApp } = Vue
-  
-    createApp({
-      data() {
-        return {
-          message: 'Hello Vue!'
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="importmap">
+    {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
         }
+      </script>
+
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  </link>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {
+      height: 450px
+    }
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
       }
-    }).mount('#app');
-  </script>
+
+      .row.content {
+        height: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Logo</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="app" class="container-fluid text-center">
+    <div class="row content">
+      <div class="col-sm-2 sidenav">
+        <p><a href="#">Link</a></p>
+        <p><a href="#">Link</a></p>
+        <p><a href="#">Link</a></p>
+      </div>
+      <div class="col-sm-8 text-left">
+        <h1>Welcome</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+          enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <hr>
+        <h3>Test</h3>
+        <p>Lorem ipsum...</p>
+      </div>
+      <div class="col-sm-2 sidenav">
+        <div class="well">
+          <p>ADS</p>
+        </div>
+        <div class="well">
+          <p>ADS</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="container-fluid text-center">
+    <p>Footer Text</p>
+  </footer>
+</body>
+
+
+<script type="module">
+  import { createApp } from 'vue'
+
+        const app = createApp({
+          data() {
+            return {
+              message: "New Message",
+              base_config : undefined,
+              urlParams : undefined,
+              base_data : undefined
+            }
+          },
+          methods: {
+            increment() {
+              this.count++
+            },
+            getBaseData(){
+              const headers = { "Content-Type": "application/json" };
+              const body = {
+                customer_id : this.base_config.customer_id,
+                master_preference_de : this.base_config.master_preferences_de,
+                preferences_de : this.base_config.preferences_target_de,
+                locale: this.base_config.customer_locale,
+                buId: this.base_config.subscriber_BU,
+                master_customer_de : this.base_config.master_customer_de,
+                preferences_values_de : this.base_config.preferences_values_de,
+                preferences_labels_de : this.base_config.preferences_labels_de
+                
+              }
+                fetch(this.base_config.pref_retrievalURL, {
+                  method: 'POST', // or 'PUT'
+                  headers: headers,
+                  body: JSON.stringify(body),
+                })
+                  .then((response) => response.json())
+                  .then((data) => {
+                    this.base_data = data;
+                  })
+                  .catch((error) => {
+                    console.log('Error:', error);
+                  });
+                
+            },
+            setURLParams(){
+                return new Promise((resolve,reject)=>{
+                    try{
+                      const urlParams = new URLSearchParams(window.location.search);
+                      resolve(urlParams);
+                    }catch(ex){
+                      reject(ex);
+                    }
+                })
+            },
+            setJSONConfig(urlParams){
+              return new Promise(function(resolve,reject){
+                  try{
+                    let jsonObj = {
+                      "customer_id" : urlParams.get('customer_id'),
+                      "customer_locale" : urlParams.get('customer_locale'),
+                      "subscriber_BU" : urlParams.get('customer_buId'),
+                      "pref_retrievalURL":"https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/sxvpd3duwja",
+                      "pref_processing_URL":"https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/nk4ctlggevc",
+                      "captcha" : {
+                        "key": "google_site_key"
+                      },
+                      "preferences_target_de" : {
+                        "key":"BU_Preferences"
+                      },
+                      "master_preferences_de": {
+                        "key":"Master_Preferences"
+                      },
+                      "master_customer_de" : {
+                        "key":"Master_Customers"
+                      },
+                      "preferences_values_de" : {
+                        "key":"Preference_Values"                      
+                      },
+                      "preferences_labels_de" : {
+                        "key":"Preference_Labels",
+                      },
+                      "logo_url":"https://osf.digital/library/media/osf/digital/common/header/osf_digital_logo.svg?h=60&la=en-AU&w=366&hash=C9F446367B2B20D20C0DDCB57814F986C5324002",
+                      "header_color":"white",
+                      "footer_color":"#389ab6",
+                      "footer_links" : [{
+                          label : "",
+                          url : "",
+                          icon_url : ""
+                      }],
+                      "external_end_point_target_de" : null,
+                      "external_service":{
+                          "authURL":"",
+                          "restURL":"",
+                          "endPoint" : "",
+                          "clientId" : "",
+                          "clientSecret":""
+                      }
+                    }
+                    resolve(jsonObj); 
+                  }catch(ex){
+                    reject(ex);
+                  }
+              })
+            }
+          },
+        
+          // Lifecycle hooks are called at different stages
+          // of a component's lifecycle.
+          // This function will be called when the component is mounted.
+          mounted() {
+            this.setURLParams().then((urlParams)=>{
+              this.urlParams = urlParams;
+            }).catch((err)=>{
+              console.log(err);
+            }).finally(()=>{
+              this.setJSONConfig(this.urlParams).then((jsonConfig)=>{
+                this.base_config = jsonConfig;
+              }).catch((err)=>{
+                console.log(err);
+              }).finally(()=>{
+                this.getBaseData();
+              });  
+            })
+            
+          }
+        })
+        
+        app.mount('#app')
+    </script>
 
 </html>
