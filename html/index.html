@@ -43,7 +43,10 @@
                 preferences_de : this.base_config.preferences_target_de,
                 locale: this.base_config.customer_locale,
                 buId: this.base_config.subscriber_BU,
-                master_customer_de : this.base_config.master_customer_de
+                master_customer_de : this.base_config.master_customer_de,
+                preferences_values_de : this.base_config.preferences_values_de,
+                preferences_labels_de : this.base_config.preferences_labels_de
+                
               }
                 fetch(this.base_config.pref_retrievalURL, {
                   method: 'POST', // or 'PUT'
@@ -99,6 +102,14 @@
                         }
                       },
                       "master_customer_de" : {
+                        "key":"ABCE2B54-FE0E-46FC-85BD-EC3F4C486D7D",
+                        "fields":["Customer_ID","FirstName","LastName","EmailAddress"]
+                      },
+                      "preferences_values_de" : {
+                        "key":"ABCE2B54-FE0E-46FC-85BD-EC3F4C486D7D",
+                        "fields":["Customer_ID","FirstName","LastName","EmailAddress"]
+                      },
+                      "preferences_labels_de" : {
                         "key":"ABCE2B54-FE0E-46FC-85BD-EC3F4C486D7D",
                         "fields":["Customer_ID","FirstName","LastName","EmailAddress"]
                       },
