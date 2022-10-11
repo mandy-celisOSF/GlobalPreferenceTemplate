@@ -28,6 +28,21 @@
             return {
               message: "New Message"
             }
+          },
+          methods: {
+            increment() {
+              this.count++
+            },
+            getBaseData(){
+              console.log('setup the json config');
+            }
+          },
+        
+          // Lifecycle hooks are called at different stages
+          // of a component's lifecycle.
+          // This function will be called when the component is mounted.
+          mounted() {
+            getBaseData();
           }
         })
         
