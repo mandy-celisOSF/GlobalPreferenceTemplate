@@ -105,7 +105,7 @@
             this.setURLParams().then((urlParams)=>{
               this.urlParams = urlParams;
             }).finally(()=>{
-              this.getBaseData(this.urlParams).then((jsonConfig)=>{
+              this.setJSONConfig(this.urlParams).then((jsonConfig)=>{
                 this.jsonConfig = jsonConfig;
               });  
             })
