@@ -107,9 +107,11 @@
             }).finally(()=>{
               this.setJSONConfig(this.urlParams).then((jsonConfig)=>{
                 this.base_config = jsonConfig;
+              }).finally(()=>{
+                console.log(this.base_config);
               });  
             })
-            console.log(this.base_config);
+            
           }
         })
         
