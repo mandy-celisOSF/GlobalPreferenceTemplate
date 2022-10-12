@@ -927,7 +927,8 @@
                 class="appearance-none inline-block border-2 border-solid border-slate-200 mr-2 px-2 rounded w-5 h-5 checked:bg-indigo-600 focus:ring-0 focus:outline-2 focus:outline-indigo-300"
                 type="checkbox" name="channel" id="channel"></div>
           </div> -->
-          <div><button @click="savePreferences" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white" type="submit">Save my
+          <div>
+            <button @click="savePreferences" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white" type="submit">Save my
               preferences</button></div>
         </form>
         <div class="font-light text-sm text-slate-600 italic pt-10">
@@ -984,7 +985,8 @@
             }
           },        
           methods: {
-            savePreferences() {
+            savePreferences(event) {
+              event.preventDefault();
               this.jsonStr = JSON.stringify(this.base_data, null, 2);
             },
             getBaseData(){
