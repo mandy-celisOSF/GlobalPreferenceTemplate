@@ -1011,9 +1011,8 @@
                   method: 'POST', // or 'PUT'
                   headers: headers,
                   body: JSON.stringify(body),
-                })
-                  .then((response) => response.json())
-                  .then((data) => {
+                }).then((response) => response.json()).then(
+                    (data) => {
                       this.base_data = {};
                       this.base_data.customer = data.customer[0];
                       this.base_data.preferences = [];
