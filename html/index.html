@@ -981,6 +981,11 @@
               showSpinner : true
             }
           },
+          filters: {
+            pretty: function(value) {
+              return JSON.stringify(value, null, 2);
+            }
+          },        
           methods: {
             increment() {
               this.count++
