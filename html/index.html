@@ -1000,6 +1000,7 @@
                     preferences : this.get_preferences_to_be_saved()
                 }
                 const headers = { "Content-Type": "application/json" };
+                console.log('JSON.stringify(payload)',JSON.stringify(payload));
                 fetch(this.base_config.pref_processing_URL, {
                   method: 'POST',
                   headers: headers,
