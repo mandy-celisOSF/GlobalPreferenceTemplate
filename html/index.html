@@ -913,12 +913,13 @@
   </header>
   <main>
   <div id="app" class="bg-white mx-auto mt-5 mb-10 p-10 md:p-12 w-full md:w-5/6 max-w-screen-md" data-v-app="">
-      <div v-if="showSpinner" class="flex justify-center items-center space-x-2">
-        <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-600" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-      </div>
+      
       <div v-if="processed">
+        <div v-if="showSpinner" class="flex justify-center items-center space-x-2">
+          <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-600" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
         <div v-if="success">
           <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Thanks, your preferences have been updated</h2>
          <p class="text-slate-600">You will now be redirected. If you are not redirected within 10 seconds , please click
