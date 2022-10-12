@@ -1009,26 +1009,15 @@
               jsonStr : undefined,
               responseData : undefined,
               processed : false,
-              success : false
+              success : false,
+              error : false
             }
           },
           filters: {
             pretty: function(value) {
               return JSON.stringify(value, null, 2);
             }
-          }, 
-          watch: {
-            timerCount: {
-                handler(value) {
-                    if (value > 0) {
-                        setTimeout(() => {
-                            this.timerCount--;
-                        }, 1000);
-                    }
-                },
-                immediate: true // This ensures the watcher is triggered upon creation
-            }
-          },       
+          },  
           methods: {
             countDownTimer () {
               if (this.countDown > 0) {
