@@ -922,8 +922,8 @@
         </div>
         <div v-if="success">
           <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Thanks, your preferences have been updated</h2>
-         <p class="text-slate-600">You will now be redirected. If you are not redirected within 10 seconds , please click
-            <a class="text-indigo-900" href="https://www.dell.com/en-us/member/registration/registration-confirmation?email={{base_data.customer.EmailAddress}}">here</a></p>
+         <p class="text-slate-600">You will now be redirected. If you are not redirected within {{ timerCount }} seconds , please click
+            <a class="text-indigo-900" href="base_config.success_url">here</a></p>
         </div>
         <div v-else>
           <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Oops, something went wrong</h2>
@@ -1012,7 +1012,19 @@
             pretty: function(value) {
               return JSON.stringify(value, null, 2);
             }
-          },        
+          }, 
+          watch: {
+            timerCount: {
+                handler(value) {
+                    if (value > 0) {
+                        setTimeout(() => {
+                            this.timerCount--;
+                        }, 1000);
+                    }
+                },
+                immediate: true // This ensures the watcher is triggered upon creation
+            }
+          },       
           methods: {
             savePreferences(event) {
                 event.preventDefault();
@@ -1146,6 +1158,7 @@
                       "preferences_labels_de" : {
                         "key":"Preference_Labels",
                       },
+                      "success_url":"https:www.google.com",
                       "logo_url":"https://osf.digital/library/media/osf/digital/common/header/osf_digital_logo.svg?h=60&la=en-AU&w=366&hash=C9F446367B2B20D20C0DDCB57814F986C5324002",
                       "header_color":"white",
                       "footer_color":"#389ab6",
