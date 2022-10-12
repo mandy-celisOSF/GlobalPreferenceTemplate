@@ -1012,7 +1012,7 @@
                       customer_id : base_config.customer_id,
                       subscriber_BU: base_config.subscriber_BU,
                       master_preference_de : base_config.master_preferences_de,
-                      preferences : ()=>{
+                      preferences : (base_data)=>{
                         var prefs = [];
                         base_data.preferences.forEach(pref=>{
                           prefs.push(
