@@ -954,9 +954,6 @@
         </div>
       </div>
     </div>
-    <div class="mx-auto my-5 px-0 py-3 w-full md:w-5/6 max-w-screen-md text-sm">
-        {{ responseData }}
-    </div>
   </main>
   <footer class="bg-indigo-800 px-5">
     <div class="flex justify-between mx-auto my-5 px-0 py-3 w-full md:w-5/6 max-w-screen-md text-white text-sm">
@@ -996,32 +993,42 @@
           methods: {
             savePreferences(event) {
                 event.preventDefault();
-                var payload = {
-                    customer_id : this.base_config.customer_id,
-                    subscriber_BU: this.base_config.subscriber_BU,
-                    master_preference_de : this.base_config.master_preferences_de,
-                    preferences : ()=>{
-                      var prefs = [];
-                      this.base_data.preferences.forEach(pref=>{
-                        prefs.push({
-                          Preference_ID : pref.Preference_ID,
-                          Customer_ID : this.base_config.customer_id,
-                          BU_ID : this.base_config.subscriber_BU,
-                          Value : pref.Value.toString()
-                        })
-                      })
-                      return prefs;
-                    }
-                }
-                const headers = { "Content-Type": "application/json" };
-                console.log('JSON.stringify(payload)',JSON.stringify(payload));
-                fetch(this.base_config.pref_processing_URL, {
-                  method: 'POST',
-                  headers: headers,
-                  body: JSON.stringify(payload)
-                }).then((response)=>response.json()).then((data)=>{
-                  this.responseData = data;
+                this.getPayloadForSave(this.base_config,this.base_data).then((payload)=>{
+                  const headers = { "Content-Type": "application/json" };
+                  console.log('JSON.stringify(payload)',JSON.stringify(payload));
+                  fetch(this.base_config.pref_processing_URL, {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify(payload)
+                  }).then((response)=>response.json()).then((data)=>{
+                    this.responseData = data;
+                  })
                 })
+            },
+            getPayloadForSave(base_config,base_data){
+              return new Promise(function (resolve,reject){
+                  try{
+                    var payload = {
+                      customer_id : base_config.customer_id,
+                      subscriber_BU: base_config.subscriber_BU,
+                      master_preference_de : base_config.master_preferences_de,
+                      preferences : []
+                    };
+                    base_data.preferences.forEach(pref=>{
+                      payload.preferences.push(
+                      {
+                        Preference_ID : pref.Preference_ID,
+                        Customer_ID : base_config.customer_id,
+                        BU_ID : base_config.subscriber_BU,
+                        Value : pref.Value.toString()
+                      });
+                    });
+                    resolve(payload) ;
+                  }
+                  catch(err){
+                    reject(err);
+                  }
+              })
             },
             getBaseData(){
               const headers = { "Content-Type": "application/json" };
