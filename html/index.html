@@ -920,15 +920,18 @@
             <span class="visually-hidden">Loading...</span>
           </div>
         </div>
-        <div v-if="success">
-          <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Thanks, your preferences have been updated</h2>
-         <p class="text-slate-600">You will now be redirected. If you are not redirected within {{ timerCount }} seconds , please click
-            <a class="text-indigo-900" href="base_config.success_url">here</a></p>
-        </div>
         <div v-else>
-          <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Oops, something went wrong</h2>
-          <p class="text-slate-600">Please try again later</p>
+          <div v-if="success">
+            <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Thanks, your preferences have been updated</h2>
+           <p class="text-slate-600">You will now be redirected. If you are not redirected within {{ timerCount }} seconds , please click
+              <a class="text-indigo-900" href="base_config.success_url">here</a></p>
+          </div>
+          <div v-else>
+            <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Oops, something went wrong</h2>
+            <p class="text-slate-600">Please try again later</p>
+          </div>
         </div>
+        
       </div>
       <div v-else>
         <div v-if="showPage">
