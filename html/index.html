@@ -1019,7 +1019,6 @@
                 setTimeout(()=>{
                   this.getPayloadForSave(this.base_config,this.base_data).then((payload)=>{
                     const headers = { "Content-Type": "application/json" };
-                    console.log('JSON.stringify(payload)',JSON.stringify(payload));
                     fetch(this.base_config.pref_processing_URL, {
                       method: 'POST',
                       headers: headers,
