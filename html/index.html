@@ -949,7 +949,7 @@
       
       <div class="font-light text-sm text-slate-600 italic pt-10">
         <textarea v-model="base_data" rows="8" cols="40"></textarea>
-            <pre>{{ base_data | pretty }}</pre>
+            <pre>{{ jsonStr }}</pre>
       </div>
     </div>
   </main>
@@ -978,7 +978,8 @@
               urlParams : undefined,
               base_data : undefined,
               showPage : false,
-              showSpinner : true
+              showSpinner : true,
+              jsonStr : undefined
             }
           },
           filters: {
@@ -1026,6 +1027,7 @@
                   }).finally(()=>{
                     this.showPage = true;
                     this.showSpinner = false;
+                    this.jsonStr = JSON.stringify(this.base_data, null, 2);
                   });
                 
             },
