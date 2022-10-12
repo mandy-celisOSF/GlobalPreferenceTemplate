@@ -1052,7 +1052,7 @@
                         Preference_ID : pref.Preference_ID,
                         Customer_ID : base_config.customer_id,
                         BU_ID : base_config.subscriber_BU,
-                        Value : pref.Value.toString()
+                        Value : pref.Value?'True':'False'
                       });
                     });
                     resolve(payload) ;
