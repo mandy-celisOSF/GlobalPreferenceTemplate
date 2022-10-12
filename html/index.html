@@ -1005,7 +1005,15 @@
                 })
                   .then((response) => response.json())
                   .then((data) => {
-                    this.base_data = data;
+                      this.base_data = {};
+                      this.base_data.customer = data.customer[0];
+                      this.base_data.preferences = [];
+                      data.preferences.forEach(pref=>{
+                        var each_pref = {...pref};
+                        each_pref.label = data.pref_labels.filter(Preference_ID===pref.Preference_ID);
+                        each_pref.value = data.pref_values.filter(Preference_ID===pref.Preference_ID);
+                        this.base_data.preferences.push(each_pref);
+                      });
                   })
                   .catch((error) => {
                     console.log('Error:', error);
@@ -1030,7 +1038,7 @@
                   try{
                     let jsonObj = {
                       "customer_id" : urlParams.get('customer_id'),
-                      "customer_locale" : urlParams.get('customer_locale'),
+                      "customer_locale" : urlParams.get('customer_locale')?urlParams.get('customer_locale'):'en_AU',
                       "subscriber_BU" : urlParams.get('customer_buId'),
                       "pref_retrievalURL":"https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/sxvpd3duwja",
                       "pref_processing_URL":"https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/nk4ctlggevc",
