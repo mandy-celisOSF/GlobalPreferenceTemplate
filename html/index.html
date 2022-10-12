@@ -1012,22 +1012,17 @@
                       customer_id : base_config.customer_id,
                       subscriber_BU: base_config.subscriber_BU,
                       master_preference_de : base_config.master_preferences_de,
-                      preferences : ()=>{
-                        var prefs = [];
-                        base_data.preferences.forEach(pref=>{
-                          prefs.push(
-                          {
-                            Preference_ID : pref.Preference_ID,
-                            Customer_ID : base_config.customer_id,
-                            BU_ID : base_config.subscriber_BU,
-                            Value : pref.Value.toString()
-                          }
-                        )
-                        })
-                        console.log('**refs',prefs);
-                        return prefs;
-                      }
+                      preferences : []
                     };
+                    base_data.preferences.forEach(pref=>{
+                      payload.preferences.push(
+                      {
+                        Preference_ID : pref.Preference_ID,
+                        Customer_ID : base_config.customer_id,
+                        BU_ID : base_config.subscriber_BU,
+                        Value : pref.Value.toString()
+                      });
+                    });
                     resolve(payload) ;
                   }
                   catch(err){
