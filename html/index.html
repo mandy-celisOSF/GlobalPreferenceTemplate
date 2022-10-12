@@ -1043,6 +1043,9 @@
                       if(this.responseData.status === 'OK'){
                         this.processed = true;
                         this.success = true;
+                        setTimeout(()=>{
+                          top.location.href = this.base_config.success_url;
+                        },3000)
                         this.countDownTimer();
                       }
                     }).catch(err=>{
