@@ -949,12 +949,9 @@
                 preferences</button>
             </div>
           </form>
-
-
-        <div>
-          {{base_data}}
-        </div>
-        
+          <div>
+            {{base_data}}
+          </div>
         </div>
         <div v-else>
           <div class="flex justify-center items-center space-x-2">
@@ -1062,18 +1059,18 @@
                         this.base_data = {};
                         this.base_data.customer = data.customer[0];
                         this.base_data.preferences = [];
-                        // data.preferences.forEach(pref=>{
-                        //     var each_pref = {...pref};
-                        //     each_pref.Value = each_pref.Value === 'True';
-                        //     each_pref.label = data.pref_labels.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Label_Values
-                        //     each_pref.type = data.bu_preferences.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Preference_Type;
-                        //     if(each_pref.type != 'Boolean'){
-                        //         each_pref.translated_value = data.pref_values.filter(item=>item.Preference_ID===pref.Preference_ID)[0]?.Option_Value;
-                        //     }else{
-                        //       each_pref.translated_value = 'True/False';
-                        //     }
-                        //     this.base_data.preferences.push(each_pref);
-                        // });
+                        data.preferences.forEach(pref=>{
+                            var each_pref = {...pref};
+                            each_pref.Value = each_pref.Value === 'True';
+                            each_pref.label = data.pref_labels.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Label_Values
+                            each_pref.type = data.bu_preferences.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Preference_Type;
+                            if(each_pref.type != 'Boolean'){
+                                each_pref.translated_value = data.pref_values.filter(item=>item.Preference_ID===pref.Preference_ID)[0]?.Option_Value;
+                            }else{
+                              each_pref.translated_value = 'True/False';
+                            }
+                            this.base_data.preferences.push(each_pref);
+                        });
                         
                     })
                     .catch((error) => {
