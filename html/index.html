@@ -1002,9 +1002,21 @@
                     customer_id : this.base_config.customer_id,
                     subscriber_BU: this.base_config.subscriber_BU,
                     master_preference_de : this.base_config.master_preferences_de,
-                    preferences : this.get_preferences_to_be_saved()
+                    preferences : ()=>{
+                      var prefs = [];
+                      this.base_data.preferences.forEach(pref=>{
+                        prefs.push({
+                          Preference_ID : pref.Preference_ID,
+                          Customer_ID : this.base_config.customer_id,
+                          BU_ID : this.base_config.subscriber_BU,
+                          Value : pref.Value.toString()
+                        })
+                      })
+                      return prefs;
+                    }
                 }
                 const headers = { "Content-Type": "application/json" };
+                console.log('JSON.stringify(payload)',JSON.stringify(payload));
                 fetch(this.base_config.pref_processing_URL, {
                   method: 'POST',
                   headers: headers,
@@ -1012,17 +1024,6 @@
                 }).then((response)=>response.json()).then((data)=>{
                   this.responseData = data;
                 })
-            },
-            get_preferences_to_be_saved(){
-              var prefs = [];
-              this.base_data.preferences.forEach(pref=>{
-                prefs.push({
-                  Preference_ID : pref.Preference_ID,
-                  Customer_ID : this.base_config.customer_id,
-                  BU_ID : this.base_config.subscriber_BU,
-                  Value : pref.Value.toString()
-                })
-              })
             },
             getBaseData(){
               const headers = { "Content-Type": "application/json" };
