@@ -1015,7 +1015,9 @@
                       this.base_data.preferences = [];
                       data.preferences.forEach(pref=>{
                           var each_pref = {...pref};
-                          each_pref.label = data.pref_labels.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Label_Values;
+                          var filtered_label = data.pref_labels.filter(item=>item.Preference_ID===pref.Preference_ID);
+                          console.log('****',filtered_label)
+                          //each_pref.label = 
                           //each_pref.translated_value = data.pref_values.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Option_Value;
                           this.base_data.preferences.push(each_pref);
                       });
