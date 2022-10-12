@@ -1016,6 +1016,7 @@
             savePreferences(event) {
                 event.preventDefault();
                 this.showSpinner = true;
+                this.processed = true;
                 setTimeout(()=>{
                   this.getPayloadForSave(this.base_config,this.base_data).then((payload)=>{
                     const headers = { "Content-Type": "application/json" };
