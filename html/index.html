@@ -920,7 +920,7 @@
             </div>
             <div class="my-4 flex flex-row-reverse justify-end" v-for="preference in base_data.preferences">
               <label class="inline-block text-slate-600 text-base" for="preference.Preference_ID">{{preference.label}}</label>
-              <input class="appearance-none inline-block border-2 border-solid border-slate-200 mr-2 px-2 rounded w-5 h-5 checked:bg-indigo-600 focus:ring-0 focus:outline-2 focus:outline-indigo-300" type="checkbox" name="preference.Preference_ID" id="preference.Preference_ID" v-model="preference.Value">
+              <input class="appearance-none inline-block border-2 border-solid border-slate-200 mr-2 px-2 rounded w-5 h-5 checked:bg-indigo-600 focus:ring-0 focus:outline-2 focus:outline-indigo-300" type="checkbox" name="preference.Preference_ID" id="preference.Preference_ID"  value="preference.Value" v-model="preference.Value">
             </div>
           </div>
           <div class="text-center">
