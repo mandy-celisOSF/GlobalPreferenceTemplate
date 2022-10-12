@@ -948,7 +948,9 @@
       </div>
       
       <div class="font-light text-sm text-slate-600 italic pt-10">
-      {{ base_data }}</div>
+        <textarea v-model="jsonstr" rows="8" cols="40"></textarea>
+            <pre>{{ jsonstr | pretty }}</pre>
+      </div>
     </div>
   </main>
   <footer class="bg-indigo-800 px-5">
