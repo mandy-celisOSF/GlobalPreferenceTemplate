@@ -900,36 +900,33 @@
         <form>
           <div class="py-6">
             <h1 class="font-bold font-serif mb-3 text-xl md:text-2xl text-indigo-900">Manage your preferences</h1>
-            <p class="text-sm text-slate-600">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-              ligula eget</p>
           </div>
           <div class="py-6">
             <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Your Info</h2>
-            <div class="my-2"><label class="block mb-1 text-slate-600 text-sm" for="Email">Email Address</label><input
-                class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" type="email" name="Email"
-                id="Email" v-model="base_data.customer.EmailAddress"></div>
-            <div class="my-2"><label class="block mb-1 text-slate-600 text-sm" for="FirstName">First Name</label><input
+            <div class="my-2">
+              <label class="block mb-1 text-slate-600 text-sm" for="Email">Email Address</label>
+                <input class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" type="email" name="Email"
+                id="Email" v-model="base_data.customer.EmailAddress">
+            </div>
+            <div class="my-2">
+              <label class="block mb-1 text-slate-600 text-sm" for="FirstName">First Name</label><input
                 class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" type="text" name="FirstName"
-                id="FirstName" v-model="base_data.customer.FirstName"></div>
-            <div class="my-2"><label class="block mb-1 text-slate-600 text-sm" for="LastName">Last Name</label><input
+                id="FirstName" v-model="base_data.customer.FirstName">
+            </div>
+            <div class="my-2">
+              <label class="block mb-1 text-slate-600 text-sm" for="LastName">Last Name</label><input
                 class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" type="text" name="LastName"
-                id="LastName" v-model="base_data.customer.LastName"></div>
-          </div>
-          <div class="py-6" v-for="preference in base_data.preferences">
-            <div class="my-4 flex flex-row-reverse justify-end">
+                id="LastName" v-model="base_data.customer.LastName">
+            </div>
+            <div class="my-4 flex flex-row-reverse justify-end" v-for="preference in base_data.preferences">
               <label class="inline-block text-slate-600 text-base" for="preference.Preference_ID">{{preference.label}}</label>
-              <input class="appearance-none inline-block border-2 border-solid border-slate-200 mr-2 px-2 rounded w-5 h-5 checked:bg-indigo-600 focus:ring-0 focus:outline-2 focus:outline-indigo-300" type="checkbox" name="preference.Preference_ID" id="preference.Preference_ID" checked="preference.Value"></div>
+              <input class="appearance-none inline-block border-2 border-solid border-slate-200 mr-2 px-2 rounded w-5 h-5 checked:bg-indigo-600 focus:ring-0 focus:outline-2 focus:outline-indigo-300" type="checkbox" name="preference.Preference_ID" id="preference.Preference_ID" checked="preference.Value">
+            </div>
           </div>
-          <!-- <div class="py-6">
-            <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">How would you like to hear from us?</h2>
-            <div class="my-4 flex flex-row-reverse justify-end"><label class="inline-block text-slate-600 text-base"
-                for="channel">Channel option</label><input
-                class="appearance-none inline-block border-2 border-solid border-slate-200 mr-2 px-2 rounded w-5 h-5 checked:bg-indigo-600 focus:ring-0 focus:outline-2 focus:outline-indigo-300"
-                type="checkbox" name="channel" id="channel"></div>
-          </div> -->
-          <div>
+          <div class="text-center">
             <button @click="savePreferences" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white" type="submit">Save my
-              preferences</button></div>
+              preferences</button>
+          </div>
         </form>
         <div class="font-light text-sm text-slate-600 italic pt-10">
           <textarea v-model="jsonStr" rows="8" cols="40"></textarea>
