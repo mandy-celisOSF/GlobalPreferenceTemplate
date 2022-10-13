@@ -975,11 +975,7 @@
           </div>
         </div>
       </div>
-      
-      <div class="font-xs italic"
->
-      {{base_data}}
-</div>      
+       
     </div>
   </main>
   <footer class="bg-indigo-800 px-5">
@@ -1134,6 +1130,7 @@
                     this.showPage = true;
                     this.showSpinner = false;
                     this.jsonStr = JSON.stringify(this.base_data, null, 2);
+                    console.log(base_data);
                   });
                 
             },
