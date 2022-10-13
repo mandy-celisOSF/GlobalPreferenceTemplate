@@ -1017,10 +1017,13 @@
             try{
               var payload = {
                 customer_id : base_config.customer_id,
-                customer_email: base_data.customer.EmailAddress,
-                customer_firstName: base_data.customer.FirstName,
-                customer_lastName: base_data.customer.LastName,
                 subscriber_BU: base_config.subscriber_BU,
+                master_customer_de : base_config.master_customer_de,
+                customer_info : {
+                  customer_email : base_data.customer.EmailAddress,
+                  customer_firstName : base_data.customer.FirstName,
+                  customer_lastName : base_data.customer.LastName
+                },
                 master_preference_de : base_config.master_preferences_de,
                 preferences : []
               };
@@ -1033,7 +1036,7 @@
                   Value : pref.Value.toString()
                 });
               });
-              console.log(payload);
+              //console.log(payload);
               resolve(payload) ;
             }
             catch(err){
