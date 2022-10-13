@@ -913,46 +913,70 @@
   </header>
   <main>
   <div id="app" class="bg-white mx-auto mt-5 mb-10 p-10 md:p-12 w-full md:w-5/6 max-w-screen-md" data-v-app="">
-      <div v-if="showPage">
-        <form>
-          <div class="py-6">
-            <h1 class="font-bold font-serif mb-3 text-xl md:text-2xl text-indigo-900">Manage your preferences</h1>
-          </div>
-          <div class="py-6">
-            <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Your Info</h2>
-            <div class="my-2">
-              <label class="block mb-1 text-slate-600 text-sm" for="Email">Email Address</label>
-                <input class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" type="email" name="Email"
-                id="Email" v-model="base_data.customer.EmailAddress">
-            </div>
-            <div class="my-2">
-              <label class="block mb-1 text-slate-600 text-sm" for="FirstName">First Name</label><input
-                class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" type="text" name="FirstName"
-                id="FirstName" v-model="base_data.customer.FirstName">
-            </div>
-            <div class="my-2">
-              <label class="block mb-1 text-slate-600 text-sm" for="LastName">Last Name</label><input
-                class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" type="text" name="LastName"
-                id="LastName" v-model="base_data.customer.LastName">
-            </div>
-            <div class="my-4 flex flex-row-reverse justify-end" v-for="preference in base_data.preferences">
-              <label class="inline-block text-slate-600 text-base" for="preference.Preference_ID">{{preference.label}}</label>
-              <input class="appearance-none inline-block border-2 border-solid border-slate-200 mr-2 px-2 rounded w-5 h-5 checked:bg-indigo-600 focus:ring-0 focus:outline-2 focus:outline-indigo-300" type="checkbox" name="preference.Preference_ID" id="preference.Preference_ID"  value="preference.Value" v-model="preference.Value">
-            </div>
-          </div>
-          <div class="text-center">
-            <button @click="savePreferences" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white" type="submit">Save my
-              preferences</button>
-          </div>
-        </form>
-      </div>
-      <div v-else>
-        <div class="flex justify-center items-center space-x-2">
+      
+      <div v-if="processed">
+        <div v-if="showSpinner" class="flex justify-center items-center space-x-2">
           <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-600" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
         </div>
+        <div v-else>
+          <div v-if="success">
+            <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Thanks, your preferences have been updated</h2>
+           <p class="text-slate-600">You will now be redirected. If you are not redirected within {{ countDown }} seconds , please click
+              <a class="text-indigo-900" v-bind:href="base_config.success_url">here</a></p>
+          </div>
+          <div v-if="error">
+            <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Oops, something went wrong</h2>
+            <p class="text-slate-600">Please try again later</p>
+          </div>
+        </div>
+        
       </div>
+      <div v-else>
+        <div v-if="showPage">
+          <form>
+            <div class="py-6">
+              <h1 class="font-bold font-serif mb-3 text-xl md:text-2xl text-indigo-900">Manage your preferences</h1>
+            </div>
+            <div class="py-6">
+              <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Your Info</h2>
+              <div class="my-2">
+                <label class="block mb-1 text-slate-600 text-sm" for="Email">Email Address</label>
+                  <input class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" type="email" name="Email"
+                  id="Email" v-model="base_data.customer.EmailAddress">
+              </div>
+              <div class="my-2">
+                <label class="block mb-1 text-slate-600 text-sm" for="FirstName">First Name</label><input
+                  class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" type="text" name="FirstName"
+                  id="FirstName" v-model="base_data.customer.FirstName">
+              </div>
+              <div class="my-2">
+                <label class="block mb-1 text-slate-600 text-sm" for="LastName">Last Name</label><input
+                  class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" type="text" name="LastName"
+                  id="LastName" v-model="base_data.customer.LastName">
+              </div>
+              <div class="my-4 flex flex-row-reverse justify-end" v-for="preference in base_data.preferences">
+                <label class="inline-block text-slate-600 text-base" v-bind:for="preference.Preference_ID">{{preference.label}}</label>
+                <input class="appearance-none inline-block border-2 border-solid border-slate-200 mr-2 px-2 rounded w-5 h-5 checked:bg-indigo-600 focus:ring-0 focus:outline-2 focus:outline-indigo-300" type="checkbox" v-bind:name="preference.Preference_ID" v-bind:id="preference.Preference_ID" v-bind:value="preference.Value" v-model="preference.Value">
+              </div>
+            </div>
+            <div class="text-center">
+              <button @click="savePreferences" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white" type="submit">Save my
+                preferences</button>
+            </div>
+          </form>
+        </div>
+        <div v-else>
+          <div class="flex justify-center items-center space-x-2">
+            <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-600" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
     </div>
     <div class="mx-auto my-5 px-0 py-3 w-full md:w-5/6 max-w-screen-md text-sm">
         {{ base_data }}
@@ -979,49 +1003,89 @@
           data() {
             return {
               message: "New Message",
+              countDown: 10,
               base_config : undefined,
               urlParams : undefined,
               base_data : undefined,
               showPage : false,
               showSpinner : true,
               jsonStr : undefined,
-              responseData : undefined
+              responseData : undefined,
+              processed : false,
+              success : false,
+              error : false
             }
           },
           filters: {
             pretty: function(value) {
               return JSON.stringify(value, null, 2);
             }
-          },        
+          },  
           methods: {
+            countDownTimer () {
+              if (this.countDown > 0) {
+                  setTimeout(() => {
+                      this.countDown -= 1
+                      this.countDownTimer()
+                  }, 1000)
+              }
+            },
             savePreferences(event) {
                 event.preventDefault();
-                var payload = {
-                    customer_id : this.base_config.customer_id,
-                    subscriber_BU: this.base_config.subscriber_BU,
-                    master_preference_de : this.base_config.master_preferences_de,
-                    preferences : ()=>{
-                      var prefs = [];
-                      this.base_data.preferences.forEach(pref=>{
-                        prefs.push({
-                          Preference_ID : pref.Preference_ID,
-                          Customer_ID : this.base_config.customer_id,
-                          BU_ID : this.base_config.subscriber_BU,
-                          Value : pref.Value.toString()
-                        })
-                      })
-                      return prefs;
-                    }
-                }
-                const headers = { "Content-Type": "application/json" };
-                console.log('JSON.stringify(payload)',JSON.stringify(payload));
-                fetch(this.base_config.pref_processing_URL, {
-                  method: 'POST',
-                  headers: headers,
-                  body: JSON.stringify(payload)
-                }).then((response)=>response.json()).then((data)=>{
-                  this.responseData = data;
-                })
+                this.showSpinner = true;
+                this.processed = true;
+                setTimeout(()=>{
+                  this.getPayloadForSave(this.base_config,this.base_data).then((payload)=>{
+                    const headers = { "Content-Type": "application/json" };
+                    fetch(this.base_config.pref_processing_URL, {
+                      method: 'POST',
+                      headers: headers,
+                      body: JSON.stringify(payload)
+                    }).then((response)=>response.json()).then((data)=>{
+                      this.responseData = data;
+                      if(this.responseData.status === 'OK'){
+                        this.processed = true;
+                        this.success = true;
+                        setTimeout(()=>{
+                          //top.location.href = this.base_config.success_url;
+                          top.location.href = top.location.href;
+                        },3000)
+                        this.countDownTimer();
+                      }
+                    }).catch(err=>{
+                      this.processed = true;
+                      this.success = false;
+                      this.error = true;
+                    }).finally(()=>{
+                      this.showSpinner = false;
+                    })
+                  })
+                },2000)
+            },
+            getPayloadForSave(base_config,base_data){
+              return new Promise(function (resolve,reject){
+                  try{
+                    var payload = {
+                      customer_id : base_config.customer_id,
+                      subscriber_BU: base_config.subscriber_BU,
+                      master_preference_de : base_config.master_preferences_de,
+                      preferences : []
+                    };
+                    base_data.preferences.forEach(pref=>{
+                      payload.preferences.push(
+                      {
+                        Preference_ID : pref.Preference_ID,
+                        Customer_ID : base_config.customer_id,
+                        BU_ID : base_config.subscriber_BU,
+                        Value : pref.Value?'True':'False'
+                      });
+                    });
+                    resolve(payload) ;
+                  }
+                  catch(err){
+                    reject(err);
+                  }
+              })
             },
             getBaseData(){
               const headers = { "Content-Type": "application/json" };
@@ -1104,6 +1168,7 @@
                       "preferences_labels_de" : {
                         "key":"Preference_Labels",
                       },
+                      "success_url":"https://www.google.com",
                       "logo_url":"https://osf.digital/library/media/osf/digital/common/header/osf_digital_logo.svg?h=60&la=en-AU&w=366&hash=C9F446367B2B20D20C0DDCB57814F986C5324002",
                       "header_color":"white",
                       "footer_color":"#389ab6",
