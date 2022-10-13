@@ -1108,6 +1108,7 @@
                   body: JSON.stringify(body),
                 }).then((response) => response.json()).then(
                     (data) => {
+                      console.log(data);
                       this.base_data = {};
                       this.base_data.customer = data.customer[0];
                       this.base_data.preferences = [];
@@ -1130,7 +1131,7 @@
                     this.showPage = true;
                     this.showSpinner = false;
                     this.jsonStr = JSON.stringify(this.base_data, null, 2);
-                    console.log(this.base_data);
+                   // console.log(this.base_data);
                   });
                 
             },
