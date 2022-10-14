@@ -1130,7 +1130,8 @@
                           all_categories.push(each_pref.category);
                       });
                       
-                      console.log(all_categories);
+                      var unique_categories = [... new Set(all_categories)];
+                      console.log(unique_categories);
 
                   })
                   .catch((error) => {
