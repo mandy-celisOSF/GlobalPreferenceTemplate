@@ -1142,10 +1142,11 @@
                       unique_categories.forEach(cat => {
                         var each_cat = {...cat};
                         var each_cat = data.bu_preferences.filter(item=>item.Category===cat);
-                        this.base_data.categories.push(each_cat);
+                        console.log(each_cat);
+                       // this.base_data.categories.push(each_cat);
                       })
 
-                      console.log(this.base_data.categories);
+                     // console.log(this.base_data.categories);
 
                   })
                   .catch((error) => {
