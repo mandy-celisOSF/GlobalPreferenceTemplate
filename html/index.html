@@ -1139,9 +1139,8 @@
                       //this.base_data.categories = unique_categories;
 
                       unique_categories.forEach(cat=> {
-                        var each_cat = {...cat};
-                        each_cat.prefs = data.bu_preferences.filter(item=>item.Category === cat);
-                        this.base_data.categories.push(each_cat);
+                        var cat_prefs = data.bu_preferences.filter(item=>item.Category === cat);
+                        this.base_data.categories.push(cat_prefs);
                       })
 
                       console.log(this.base_data.categories);
