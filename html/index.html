@@ -1117,7 +1117,6 @@
                   body: JSON.stringify(body),
                 }).then((response) => response.json()).then(
                     (data) => {
-                      //console.log(data);
                       this.base_data = {};
                       this.base_data.customer = data.customer[0];
                       this.base_data.preferences = [];
@@ -1142,15 +1141,6 @@
                       
                       var unique_categories = [... new Set(all_categories)];
                       this.base_data.categories = unique_categories;
-                      // unique_categories.forEach(cat => {
-                      //   var each_cat = {...cat};
-                      //   var each_cat = data.bu_preferences.filter(item=>item.Category===cat);
-                      //   //console.log(each_cat);
-                      //   this.base_data.categories.push(each_cat);
-                      // })
-
-                     // console.log(this.base_data.categories);
-
                   })
                   .catch((error) => {
                     console.log('Error:', error);
