@@ -1131,7 +1131,8 @@
                       });
                       
                       var unique_categories = [... new Set(all_categories)];
-                      console.log(unique_categories);
+                      this.base_data.categories = unique_categories;
+                      console.log(base_data.categories);
 
                   })
                   .catch((error) => {
