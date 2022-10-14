@@ -1112,6 +1112,9 @@
                       this.base_data = {};
                       this.base_data.customer = data.customer[0];
                       this.base_data.preferences = [];
+                      
+                      var all_categories = [];
+
                       data.preferences.forEach(pref=>{
                           var each_pref = {...pref};
                           each_pref.Value = each_pref.Value === 'True';
@@ -1124,7 +1127,11 @@
                             each_pref.translated_value = 'True/False';
                           }
                           this.base_data.preferences.push(each_pref);
+                          all_categories.push(each_pref.category);
                       });
+                      
+                      console.log(all_categories);
+
                   })
                   .catch((error) => {
                     console.log('Error:', error);
