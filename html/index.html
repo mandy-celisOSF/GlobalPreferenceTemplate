@@ -958,6 +958,7 @@
               </div>
                 
               <div v-for="category in base_data.categories">
+                <h2>{{ category }}</h2>
               <!-- preference row -->
               <div class="my-4 flex flex-row-reverse justify-end" v-for="preference in base_data.preferences">
                 <label class="inline-block text-slate-600 text-base" v-bind:for="preference.Preference_ID">{{preference.label}}</label>
