@@ -1121,8 +1121,6 @@
                       this.base_data.customer = data.customer[0];
                       this.base_data.preferences = [];
                       this.base_data.ordered_categories = [];
-                      
-                      //var all_categories = [];
 
                       data.preferences.forEach(pref=>{
                           var each_pref = {...pref};
@@ -1136,12 +1134,8 @@
                             each_pref.translated_value = 'True/False';
                           }
                           this.base_data.preferences.push(each_pref);
-                          //all_categories.push(each_pref.category);
                       });
-                      
-                      //var unique_categories = [... new Set(all_categories)];
-                      //this.base_data.categories = unique_categories;
-                      
+
                       //sort categories into order
                       this.base_data.ordered_categories = data.category_labels.sort((a,b) => a.Category_Index - b.Category_Index);
                       
@@ -1173,8 +1167,8 @@
                       "customer_id" : urlParams.get('customer_id'),
                       "customer_locale" : urlParams.get('customer_locale')?urlParams.get('customer_locale'):'en_AU',
                       "subscriber_BU" : urlParams.get('customer_buId'),
-                      //"pref_retrievalURL":"https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/sxvpd3duwja",
-                      "pref_retrievalURL" : "https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/q32m5kna4qx",
+                      "pref_retrievalURL":"https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/sxvpd3duwja",
+                      //"pref_retrievalURL" : "https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/q32m5kna4qx",
                       "pref_processing_URL":"https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/nk4ctlggevc",
                       "captcha" : {
                         "key": "google_site_key"
