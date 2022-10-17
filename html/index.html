@@ -957,8 +957,8 @@
                   id="LastName" v-model="base_data.customer.LastName">
               </div>
                 
-              <div v-for="category in base_data.categories">
-                <h2>{{ category }}</h2>
+              <div v-for="category in base_data.ordered_categories">
+                <h2>{{ category.Category_Label }}</h2>
                 <div v-for="preference in base_data.preferences">
               <!-- preference row -->
               <div class="my-4 flex flex-row-reverse justify-end" v-if="preference.category===category">
