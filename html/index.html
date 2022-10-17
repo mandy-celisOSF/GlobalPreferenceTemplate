@@ -961,7 +961,7 @@
                 <h2>{{ category.Category_Label }}</h2>
                 <div v-for="preference in base_data.preferences">
               <!-- preference row -->
-              <div class="my-4 flex flex-row-reverse justify-end" v-if="preference.category===category">
+              <div class="my-4 flex flex-row-reverse justify-end" v-if="preference.category===category.Category_ID">
                 <label class="inline-block text-slate-600 text-base" v-bind:for="preference.Preference_ID">{{preference.label}}</label>
                 <input class="appearance-none inline-block border-2 border-solid border-slate-200 mr-2 px-2 rounded w-5 h-5 checked:bg-indigo-600 focus:ring-0 focus:outline-2 focus:outline-indigo-300" type="checkbox" v-bind:name="preference.Preference_ID" v-bind:id="preference.Preference_ID" v-bind:value="preference.Value" v-model="preference.Value">
               </div>
