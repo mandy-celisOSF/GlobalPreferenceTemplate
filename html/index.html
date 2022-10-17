@@ -937,7 +937,7 @@
         <div v-if="showPage">
           <form>
             <div class="py-6">
-              <h1 class="font-bold font-serif mb-3 text-xl md:text-2xl text-indigo-900">Manage your preferences</h1>
+              <h1 class="font-bold font-serif mb-3 text-xl md:text-2xl text-indigo-900">(DEV) Manage your preferences</h1>
             </div>
             <div class="py-6">
               <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Your Info</h2>
@@ -957,11 +957,11 @@
                   id="LastName" v-model="base_data.customer.LastName">
               </div>
                 
-              <div class="my-10" v-for="category in base_data.categories">
-                <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">{{ category }}</h2>
+              <div v-for="category in base_data.ordered_categories">
+                <h2 class="font-bold font-serif mt-6 mb-3 text-lg text-indigo-900">{{ category.Category_Label }}</h2>
                 <div v-for="preference in base_data.preferences">
               <!-- preference row -->
-              <div class="my-4 flex flex-row-reverse justify-end" v-if="preference.category===category">
+              <div class="my-4 flex flex-row-reverse justify-end" v-if="preference.category===category.Category_ID">
                 <label class="inline-block text-slate-600 text-base" v-bind:for="preference.Preference_ID">{{preference.label}}</label>
                 <input class="appearance-none inline-block border-2 border-solid border-slate-200 mr-2 px-2 rounded w-5 h-5 checked:bg-indigo-600 focus:ring-0 focus:outline-2 focus:outline-indigo-300" type="checkbox" v-bind:name="preference.Preference_ID" v-bind:id="preference.Preference_ID" v-bind:value="preference.Value" v-model="preference.Value">
               </div>
@@ -1108,8 +1108,8 @@
                 buId: this.base_config.subscriber_BU,
                 master_customer_de : this.base_config.master_customer_de,
                 preferences_values_de : this.base_config.preferences_values_de,
-                preferences_labels_de : this.base_config.preferences_labels_de
-                
+                preferences_labels_de : this.base_config.preferences_labels_de,
+                categories_de : this.base_config.categories_de
               }
                 fetch(this.base_config.pref_retrievalURL, {
                   method: 'POST', // or 'PUT'
@@ -1117,12 +1117,11 @@
                   body: JSON.stringify(body),
                 }).then((response) => response.json()).then(
                     (data) => {
+                      console.log(data);
                       this.base_data = {};
                       this.base_data.customer = data.customer[0];
                       this.base_data.preferences = [];
-                      this.base_data.categories = [];
-                      
-                      var all_categories = [];
+                      this.base_data.ordered_categories = [];
 
                       data.preferences.forEach(pref=>{
                           var each_pref = {...pref};
@@ -1136,11 +1135,11 @@
                             each_pref.translated_value = 'True/False';
                           }
                           this.base_data.preferences.push(each_pref);
-                          all_categories.push(each_pref.category);
                       });
+
+                      //sort categories into order
+                      this.base_data.ordered_categories = data.category_labels.sort((a,b) => a.Category_Index - b.Category_Index);
                       
-                      var unique_categories = [... new Set(all_categories)];
-                      this.base_data.categories = unique_categories;
                   })
                   .catch((error) => {
                     console.log('Error:', error);
@@ -1148,6 +1147,7 @@
                     this.showPage = true;
                     this.showSpinner = false;
                     this.jsonStr = JSON.stringify(this.base_data, null, 2);
+                    console.log(this.base_data);
                   });
                 
             },
@@ -1168,13 +1168,17 @@
                       "customer_id" : urlParams.get('customer_id'),
                       "customer_locale" : urlParams.get('customer_locale')?urlParams.get('customer_locale'):'en_AU',
                       "subscriber_BU" : urlParams.get('customer_buId'),
-                      "pref_retrievalURL":"https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/sxvpd3duwja",
+                      //"pref_retrievalURL":"https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/sxvpd3duwja",
+                      "pref_retrievalURL" : "https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/q32m5kna4qx",
                       "pref_processing_URL":"https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/nk4ctlggevc",
                       "captcha" : {
                         "key": "google_site_key"
                       },
                       "preferences_target_de" : {
                         "key":"BU_Preferences"
+                      },
+                      "categories_de" : {
+                        "key":"BU_Categories"
                       },
                       "master_preferences_de": {
                         "key":"Master_Preferences"
