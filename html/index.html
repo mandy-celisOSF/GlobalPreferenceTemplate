@@ -1120,7 +1120,7 @@
                       this.base_data = {};
                       this.base_data.customer = data.customer[0];
                       this.base_data.preferences = [];
-                      this.base_data.categories = [];
+                      this.base_data.ordered_categories = [];
                       
                       //var all_categories = [];
 
@@ -1141,23 +1141,12 @@
                       
                       //var unique_categories = [... new Set(all_categories)];
                       //this.base_data.categories = unique_categories;
-
-                      function compare(a,b) {
-                        const aIndex = Number(a.Category_Index);
-                        const bIndex = Number(a.Category_Index);
-                        let comparison = 0;
-                        if (aIndex > bIndex) {
-                          comparison = -1;
-                        } else if (bIndex < aIndex) {
-                          comparison = 1;
+                      
+                      for (i=0; i<data.category_labels.length; i++) {
+                        if (this.Category_Index === i) {
+                          this.base_data.ordered_categories.push(data.category_labels[i]);
                         }
-                        return comparison; 
-
                       }
-
-                      var ordered_categories = data.category_labels.sort(compare);
-                      console.log(ordered_categories);
-                      this.base_data.categories = ordered_categories;
                       
                   })
                   .catch((error) => {
