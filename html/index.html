@@ -1143,7 +1143,8 @@
                       //this.base_data.categories = unique_categories;
                       
                       for (var i=0; i<data.category_labels.length ; i++) {
-                        if (data.category_labels[i].Category_Index == (i+1)) {
+                        var sortIndex = i+1; 
+                        if (data.category_labels[i].Category_Index == sortIndex) {
                           this.base_data.ordered_categories.push(data.category_labels[i]);
                         }
                       }
