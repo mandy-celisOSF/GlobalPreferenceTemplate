@@ -1147,13 +1147,14 @@
                         const bIndex = Number(a.Category_Index);
                         let comparison = 0;
                         if (aIndex > bIndex) {
-                          comparison = 1;
-                        } else if (bIndex < aIndex) {
                           comparison = -1;
+                        } else if (bIndex < aIndex) {
+                          comparison = 1;
                         }
                         return comparison; 
 
                       }
+
                       var ordered_categories = data.category_labels.sort(compare);
                       console.log(ordered_categories);
                       this.base_data.categories = ordered_categories;
