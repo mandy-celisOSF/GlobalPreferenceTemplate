@@ -958,7 +958,7 @@
               </div>
                 
               <div v-for="category in base_data.ordered_categories">
-                <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">{{ category.Category_Label }}</h2>
+                <h2 class="font-bold font-serif mt-6 mb-3 text-lg text-indigo-900">{{ category.Category_Label }}</h2>
                 <div v-for="preference in base_data.preferences">
               <!-- preference row -->
               <div class="my-4 flex flex-row-reverse justify-end" v-if="preference.category===category.Category_ID">
