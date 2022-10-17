@@ -1120,9 +1120,9 @@
                       this.base_data = {};
                       this.base_data.customer = data.customer[0];
                       this.base_data.preferences = [];
-                      this.base_data.categories = [];
+                      this.base_data.categories = data.category_labels;
                       
-                      var all_categories = [];
+                      //var all_categories = [];
 
                       data.preferences.forEach(pref=>{
                           var each_pref = {...pref};
@@ -1136,11 +1136,13 @@
                             each_pref.translated_value = 'True/False';
                           }
                           this.base_data.preferences.push(each_pref);
-                          all_categories.push(each_pref.category);
+                          //all_categories.push(each_pref.category);
                       });
                       
-                      var unique_categories = [... new Set(all_categories)];
-                      this.base_data.categories = unique_categories;
+                      //var unique_categories = [... new Set(all_categories)];
+                      //this.base_data.categories = unique_categories;
+
+                      
                   })
                   .catch((error) => {
                     console.log('Error:', error);
