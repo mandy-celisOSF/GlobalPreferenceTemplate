@@ -1044,12 +1044,12 @@
               unsubscribeAll: false
             }
           },
-          computed: {
-            getPrefValues() {
-              return this.base_data.preferences.map(function(pref) {
-                 return pref.Value });
-            }
-          },
+          // computed: {
+          //   getPrefValues() {
+          //     return this.base_data.preferences.map(function(pref) {
+          //        return pref.Value });
+          //   }
+          // },
           watch: {
             unsubscribeAll(newUnsubVal) {
               if (newUnsubVal === true) {
@@ -1059,12 +1059,12 @@
                 
               }
             },
-            getPrefValues(newPrefValues) {
-              console.log(newPrefValues);
-              if (this.getPrefValues.includes(true)) {
-               this.unsubscribeAll = false;
-             }
-          }
+          //   getPrefValues(newPrefValues) {
+          //     console.log(newPrefValues);
+          //     if (this.getPrefValues.includes(true)) {
+          //      this.unsubscribeAll = false;
+          //    }
+          // }
         },
           filters: {
             pretty: function(value) {
