@@ -1045,7 +1045,7 @@
             }
           },
           computed: {
-            selected() {
+            getPrefValues() {
               return this.base_data.preferences.map(pref => pref.Value);
             }
           },
@@ -1059,11 +1059,11 @@
               }
             }
             ,
-            selected(newSelectedVal) {
-              //console.log(newSelectedVal);
-              if (this.selected.includes(true)) {
-                this.unsubscribeAll = false;
-              }
+            getPrefValues(newPrefValues) {
+              console.log(newPrefValues);
+              // if (this.selected.includes(true)) {
+              //   this.unsubscribeAll = false;
+              // }
           }
         },
           filters: {
