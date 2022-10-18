@@ -992,7 +992,7 @@
               </div>
 
               <div class="text-center">
-                <button @click="savePreferences" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white" type="submit">Unsubscribe</button>
+                <button @click="savePreferences" class="rounded-full bg-indigo-600 hover:bg-indigo-800 disabled:bg-slate-400 px-6 py-3 text-white" type="submit" :disabled="!unsubscribeAll">Unsubscribe</button>
               </div>
           </div>
           </form>
