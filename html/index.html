@@ -1047,14 +1047,14 @@
           computed: {
             getPrefValues() {
               return this.base_data.preferences.map(function(pref) {
-                return pref.Value });
+                 return pref.Value });
             }
           },
           watch: {
             unsubscribeAll(newUnsubVal) {
               if (newUnsubVal === true) {
-                this.base_data.preferences.forEach((pref) => {
-                  pref.Value = false;
+                this.base_data.preferences.forEach(function (pref) {
+                  return pref.Value = false;
                 });
                 
               }
