@@ -1058,6 +1058,11 @@
                 console.log(this.base_data.preferences);
               }
             },
+            selected(newSelectVal) {
+              if (this.selected.includes(true)) {
+                this.unsubscribeAll = false;
+              }
+            }
           },
           filters: {
             pretty: function(value) {
