@@ -1043,15 +1043,26 @@
               unsubscribeAll: false
             }
           },
+          computed: {
+            computed: {
+              selected() {
+                return this.base_data.preferences.map(pref => pref.Value);
+              }
+            }
+          },
           watch: {
             unsubscribeAll(newUnsubVal) {
               if (newUnsubVal === true) {
                 this.base_data.preferences.forEach((pref) => {
                   pref.Value = false;
                 });
-               // console.log(this.base_data.preferences);
               }
             },
+            selected(newSelectVal) {
+              if (this.selected.includes(true)) {
+                this.unsubscribeAll = false;
+              }
+            }
           },
           filters: {
             pretty: function(value) {
