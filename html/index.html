@@ -1042,8 +1042,13 @@
               success : false,
               error : false,
               unsubscribeAll: false
-          }
-        },
+            }
+          },
+          computed: {
+            selected() {
+              return this.base_data.preferences.map(pref => pref.Value);
+            }
+          },
           watch: {
             unsubscribeAll(newUnsubVal) {
               if (newUnsubVal === true) {
