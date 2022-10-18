@@ -1043,13 +1043,13 @@
               unsubscribeAll: false
             }
           },
-          computed: {
-              selected() {
-                  if (this.base_data.preferences) {
-                  return this.base_data.preferences.map(pref => pref.Value);
-                }
-              }
-          },
+          // computed: {
+          //     selected() {
+          //         if (this.base_data.preferences) {
+          //         return this.base_data.preferences.map(pref => pref.Value);
+          //       }
+          //     }
+          // },
           watch: {
             unsubscribeAll(newUnsubVal) {
               if (newUnsubVal === true) {
@@ -1058,11 +1058,11 @@
                 });
               }
             },
-            selected(newSelectVal) {
-              if (this.selected.includes(true)) {
-                this.unsubscribeAll = false;
-              }
-            }
+            // selected(newSelectVal) {
+            //   if (this.selected.includes(true)) {
+            //     this.unsubscribeAll = false;
+            //   }
+            // }
           },
           filters: {
             pretty: function(value) {
@@ -1190,7 +1190,7 @@
                     this.showPage = true;
                     this.showSpinner = false;
                     this.jsonStr = JSON.stringify(this.base_data, null, 2);
-                    //console.log(this.base_data);
+                    console.log(this.base_data);
                   });
                 
             },
