@@ -1057,13 +1057,15 @@
                 });
                 
               }
-            },
+            }
+            ,
             selected(newSelectedVal) {
               //console.log(newSelectedVal);
               if (this.selected.includes(true)) {
                 this.unsubscribeAll = false;
               }
-          },
+          }
+        },
           filters: {
             pretty: function(value) {
               return JSON.stringify(value, null, 2);
