@@ -1046,7 +1046,7 @@
           },
           computed: {
             selected() {
-              console.log(this.base_data.preferences.map(pref => pref.Value));
+              return this.base_data.preferences.map(pref => pref.Value);
             }
           },
           watch: {
@@ -1055,7 +1055,7 @@
                 this.base_data.preferences.forEach((pref) => {
                   pref.Value = false;
                 });
-                console.log(this.base_data.preferences);
+                console.log(this.selected);
               }
             },
             // selected(newSelectVal) {
