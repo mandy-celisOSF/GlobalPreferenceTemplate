@@ -1053,13 +1053,12 @@
           watch: {
             unsubscribeAll(newUnsubVal) {
               if (newUnsubVal === true) {
-                this.base_data.preferences.forEach(function (pref) {
+                this.base_data.preferences.forEach(function(pref) {
                   return pref.Value = false;
                 });
                 
               }
-            }
-            ,
+            },
             getPrefValues(newPrefValues) {
               console.log(newPrefValues);
               if (this.getPrefValues.includes(true)) {
