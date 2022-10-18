@@ -1055,14 +1055,15 @@
                 this.base_data.preferences.forEach((pref) => {
                   pref.Value = false;
                 });
-                console.log(this.selected);
+                
               }
             },
-            // selected(newSelectVal) {
-            //   if (this.selected.includes(true)) {
-            //     this.unsubscribeAll = false;
-            //   }
-            // }
+            selected(newSelectedVal) {
+              console.log(newSelectedVal);
+              // if (this.selected.includes(true)) {
+              //   this.unsubscribeAll = false;
+              }
+            }
           },
           filters: {
             pretty: function(value) {
