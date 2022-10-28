@@ -1047,8 +1047,9 @@
           },
           computed: {
             getPrefValues() {
-              return this.base_data.preferences.map(function(pref) {
+              var prefValues = this.base_data.preferences.map(function(pref) {
                  return pref.Value });
+               return prefValues.includes(true);  
             }
           },
           watch: {
