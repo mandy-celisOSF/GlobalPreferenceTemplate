@@ -1019,6 +1019,7 @@
         </ul>
       </div>
     </div>
+    <div>{{getPrefValues}}</div>
   </footer>
 
 
@@ -1058,11 +1059,6 @@
                   return pref.Value = false;
                 });
                 
-              }
-            },
-            getPrefValues(newPrefValues) {
-              if (newPrefValues === true) {
-                this.unsubscribeAll = false;
               }
           }
         },
