@@ -1059,6 +1059,14 @@
                 
               }
             },
+            base_data() {
+              var currentPreferences = this.base_data.preferences.map(function(pref) {
+                 return pref.Value };
+                 console.log(currentPreferences);
+                 if (currentPreferences.includes(true)) {
+               this.unsubscribeAll = false;
+             }
+            }
           //   getPrefValues(newPrefValues) {
           //     console.log(newPrefValues);
           //     if (this.getPrefValues.includes(true)) {
