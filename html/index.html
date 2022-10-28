@@ -1048,7 +1048,7 @@
             getPrefValues() {
               var prefValues = this.base_data.preferences.map(function(pref) {
                  return pref.Value });
-               console.log(prefValues.includes(true));
+               return prefValues.includes(true);
             }
           },
           watch: {
@@ -1060,12 +1060,12 @@
                 
               }
             },
-            // getPrefValues(newPrefValues) {
-            //   console.log(newPrefValues);
-            //   if (this.getPrefValues.includes(true)) {
-            //    this.unsubscribeAll = false;
-            //  }
-          },
+            getPrefValues(newPrefValues) {
+              if (newPrefValues === true) {
+                this.unsubscribeAll = false;
+              }
+          }
+        },
           filters: {
             pretty: function(value) {
               return JSON.stringify(value, null, 2);
