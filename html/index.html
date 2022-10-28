@@ -1019,7 +1019,7 @@
         </ul>
       </div>
     </div>
-    <div class="text-white">{{this.getPrefValues}}</div>
+    <div class="text-white">{{ getPrefValues }}</div>
   </footer>
 
 
@@ -1047,9 +1047,8 @@
           },
           computed: {
             getPrefValues() {
-              var prefValues = this.base_data.preferences.map(function(pref) {
+              return this.base_data.preferences.map(function(pref) {
                  return pref.Value });
-               return prefValues.includes(true);
             }
           },
           watch: {
