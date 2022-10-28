@@ -1046,7 +1046,7 @@
             }
           },
           computed: {
-            getPrefValues() {
+            prefIsChecked() {
               var prefValues = this.base_data.preferences.map(function(pref) {
                  return pref.Value });
                return prefValues.includes(true);  
@@ -1060,6 +1060,13 @@
                 });
                 
               }
+          },
+          prefIsChecked(newPrefChecked){
+            if (newPrefChecked === true) {
+              if (this.unsubscribeAll === true) {
+                this.unsubscribeAll = false;
+              }
+            }
           }
         },
           filters: {
