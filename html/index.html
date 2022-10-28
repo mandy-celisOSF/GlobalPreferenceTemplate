@@ -994,7 +994,6 @@
               <div class="text-center">
                 <button @click="savePreferences" class="rounded-full bg-indigo-600 hover:bg-indigo-800 disabled:bg-slate-400 px-6 py-3 text-white" type="submit" :disabled="!unsubscribeAll">Unsubscribe</button>
               </div>
-              <div class="text-slate">{{ getPrefValues }}</div>
           </div>
           </form>
 
@@ -1045,13 +1044,6 @@
               unsubscribeAll: false
             }
           },
-          // computed: {
-          //   prefIsChecked() {
-          //     var prefValues = this.base_data.preferences.map(function(pref) {
-          //        return pref.Value });
-          //      return prefValues.includes(true);  
-          //   }
-          // },
           watch: {
             unsubscribeAll(newUnsubVal) {
               if (newUnsubVal === true) {
@@ -1069,6 +1061,7 @@
           },  
           methods: {
             checkPrefSelected() {
+              /* if any preferences selected while UnsubAll is selected, deselect UnsubAll */
               var prefValues = this.base_data.preferences.map(function(pref) {
                  return pref.Value });
               if (prefValues.includes(true)) {
