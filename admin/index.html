@@ -963,8 +963,8 @@
                     <td class="w-2/5 p-3 text-center">{{ category.Category_Label }}</td>
                     <td class="w-1/5 p-3 text-center">{{ category.Category_Index }}</td>
                     <td class="w-1/5 p-3 text-center">
-                      <a href="#Edit" class="text-indigo-600 underline">Edit</a> | 
-                      <a href="#Delete" class="text-indigo-600 underline">Delete</a></td>
+                      <a @click="editCategory" href="#" class="text-indigo-600 underline">Edit</a> | 
+                      <a href="#" class="text-indigo-600 underline">Delete</a></td>
                   </tr>
                 </thead>
 
@@ -1032,6 +1032,9 @@
                       this.countDownTimer()
                   }, 1000)
               }
+            },
+            editCategory () {
+              alert("Open edit modal");
             },
             // savePreferences(event) {
             //     event.preventDefault();
