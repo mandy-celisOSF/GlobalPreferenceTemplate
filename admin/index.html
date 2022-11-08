@@ -940,7 +940,6 @@
               <h1 class="font-bold font-serif mb-3 text-xl md:text-2xl text-indigo-900">Manage your preference centre</h1>
               <p>{{ this.base_data }}</p>
             </div>
-            </div>
 
             
           </form>
@@ -1074,7 +1073,7 @@
                 preferences_de : this.base_config.preferences_target_de,
                 //locale: this.base_config.customer_locale,
                 buId: this.base_config.admin_BU,
-                master_customer_de : this.base_config.master_customer_de,
+                //master_customer_de : this.base_config.master_customer_de,
                 preferences_values_de : this.base_config.preferences_values_de,
                 preferences_labels_de : this.base_config.preferences_labels_de,
                 categories_de : this.base_config.categories_de
@@ -1095,6 +1094,7 @@
                     this.showPage = true;
                     this.showSpinner = false;
                     this.jsonStr = JSON.stringify(this.base_data, null, 2);
+                    console.log(this.showPage);
                     console.log(this.base_data);
                   });
                 
