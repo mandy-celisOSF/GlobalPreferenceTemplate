@@ -6,17 +6,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
-  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.1/dist/flowbite.min.css" />
-  
-
+  <link rel="stylesheet" href="https://flowbite.com/docs/flowbite.css?v=1.5.3a">
   <script src="https://cdn.tailwindcss.com"></script>
   <script type="importmap">
-    {
-          "imports": {
-            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-          }
-    }
-        
+    { "imports": {
+      "vue":        "https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.41/vue.esm-browser.prod.js",
+      "vue-router": "https://cdnjs.cloudflare.com/ajax/libs/vue-router/4.1.5/vue-router.esm-browser.min.js",
+      "vue-tailwind" : "https://cdn.jsdelivr.net/npm/vue-tailwind@2.5.1/dist/vue-tailwind.min.js"
+    } }
   </script>
   <script>
     tailwind.config = {
@@ -29,8 +26,6 @@
       }
     }
   </script>
-  <!-- jquery -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
   <style>
     /* ! tailwindcss v3.1.8 | MIT License | https://tailwindcss.com */
     *,
@@ -852,9 +847,11 @@
       --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
       box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)
     }
-    .visually-hidden{
+
+    .visually-hidden {
       visibility: hidden;
     }
+
     @media (min-width: 768px) {
       .md\:w-5\/6 {
         width: 83.333333%
@@ -916,96 +913,201 @@
   </header>
   <main>
     <div id="app" class="bg-white mx-auto mt-5 mb-10 p-10 md:p-12 w-full md:w-5/6 max-w-screen-md" data-v-app="">
-        
-        <div v-if="loginCompleted">
-          <div v-if="showSpinner" class="flex justify-center items-center space-x-2">
-            <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-600" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-          </div>
-          <div v-else>
-            <div v-if="showSuccessMessage">
-              <div id="success" class="flex p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
-                <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                <span class="sr-only">Success</span>
-                <div>
-                  <span class="font-medium">Logged in successfully!</span> 
-                </div>
-              </div>
-            </div>
-            <div>
-              <button id="dropdownDefault" data-dropdown-toggle="dropdown"
-                  class="inline-flex items-center rounded-lg bg-blue-700 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  type="button">
-                  Dropdown busdatton <svg class="ml-2 h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor"
-                      viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                  </svg>
-              </button>
-              <div id="dropdown" class="z-10 w-44 divide-y divide-gray-100 rounded bg-white shadow dark:bg-gray-700 hidden"
-                  data-popper-placement="bottom">
-                  <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
-                      <li>
-                          <a href="#"
-                              class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                      </li>
-                      <li>
-                          <a href="#"
-                              class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                      </li>
-                      <li>
-                          <a href="#"
-                              class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                      </li>
-                      <li>
-                          <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign
-                              out</a>
-                      </li>
-                  </ul>
-              </div>
-            </div>
+      <div v-if="loginCompleted">
+        <div class="text-right">
+          <button @click="doLogOut()" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white">Log out</button>
+        </div>
+        <div v-if="showSpinner" class="flex justify-center items-center space-x-2">
+          <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-600"
+            role="status">
+            <span class="visually-hidden">Loading...</span>
           </div>
         </div>
         <div v-else>
-          <div v-if="showSpinner" class="flex justify-center items-center space-x-2">
-            <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-600" role="status">
-              <span class="visually-hidden">Loading...</span>
+          <div v-if="showSuccessMessage">
+            <div id="success"
+              class="flex p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+              role="alert">
+              <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span class="sr-only">{{successMessage}}</span>
+              <div>
+                <span class="font-medium">{{successMessage}}</span>
+              </div>
             </div>
           </div>
-          <div v-else>
-            <div v-if="showError">
-              <div class="flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
-                <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                <span class="sr-only">Invalid credentials</span>
-                <div>
-                  <span class="font-medium">Entered username / password incorrect</span><br/>
-                  <span class="font-medium">Please enter valid credentials</span>
+          <label for="action" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">I want to </label>
+          <select v-model="selectedAction" @change="change_in_action($event)" id="action" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option value="" selected>Select an option</option>
+            <option v-for="action in actions" v-bind:value="action">{{action}}</option>
+          </select>
+          <br/>
+          <div v-if="show_de_picklist">
+            <label for="de" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">{{label_name}}</label>
+            <select v-model="selectedDE" id="de" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <option value="" selected>Select an option</option>
+              <option v-for="[key, value] in obj_config" v-bind:value="key">{{key}}</option>
+            </select>
+            <br/>
+            <div class="text-center">
+              <button @click="doshowRecordtable" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white"
+                type="submit"  :disabled='confirmButtonDisable'>Confirm</button>
+            </div>
+            <br/><br/>
+            <div v-if="showrecordstable" style="margin-top:2%;">
+              <div v-if="showError">
+                <div class="flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+                  role="alert">
+                  <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="sr-only">{{errorMessage}}</span>
+                  <div>
+                    <span class="font-medium">{{errorMessage}}</span><br />
+                  </div>
                 </div>
+              </div>
+              <div v-if="showSuccessMessage">
+                <div id="success"
+                  class="flex p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+                  role="alert">
+                  <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="sr-only">{{successMessage}}</span>
+                  <div>
+                    <span class="font-medium">{{successMessage}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="text-right">
+                <button @click="addRows()" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white"><i class="fa fa-plus"></i> Add</button>
+              </div>
+              <table class="table-auto" style="margin-top:5%;">
+                <thead>
+                  <tr>
+                    <th v-for="field in selected_config_obj.fields">{{field.label}}</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(record,index) in records">
+                    <td v-for="field in selected_config_obj.fields">
+                      <input class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" type="text"
+                      v-model="record[field.name]">
+                    </td>
+                    <td>
+                      <div class="text-center">
+                        <button  @click="removeRows($index)" class="btn"><i class="fa fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <br/><br/><br/>
+              <div class="text-center">
+                <button @click="doUpsert($event)" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white"
+                  type="submit">{{buttonName}}</button>
               </div>
             </div>
-            <form>
-              <div class="py-6">
-                <h1 class="font-bold font-serif mb-3 text-xl md:text-2xl text-indigo-900">Manage your preference center</h1>
+            <div v-if="showFieldsSection" style="margin-top:2%;">
+              <div v-if="showError">
+                <div class="flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+                  role="alert">
+                  <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="sr-only">{{errorMessage}}</span>
+                  <div>
+                    <span class="font-medium">{{errorMessage}}</span><br />
+                  </div>
+                </div>
               </div>
-              <div class="py-6">
+              <div>
                 <div class="my-2">
-                  <label class="block mb-1 text-slate-600 text-sm" for="username">User name</label>
-                    <input class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" v-bind:type="type" name="username"
-                    id="username" v-model="user.user_name">
+                  <label for="field" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Column Name</label>
+                  <select v-model="searchObj.field" id="field" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="" selected>Select an option</option>
+                    <option v-for="field in selected_config_obj.fields" v-bind:value="field.name">{{field.name}}</option>
+                  </select>
                 </div>
                 <div class="my-2">
-                  <label class="block mb-1 text-slate-600 text-sm" for="password">Password</label><input
-                    class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" type="password" name="password"
-                    id="password" v-model="user.password">
+                  <label class="block mb-1 text-slate-600 text-sm" for="username">Value</label>
+                  <input class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" v-bind:type="type"
+                    name="searchValue" id="searchField" v-model="searchObj.value">
                 </div>
+          </select>
               </div>
               <div class="text-center">
-                <button @click="doLogin" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white" type="submit">Login</button>
+                <button @click="doAction($event)" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white"
+                  type="submit">{{buttonName}}</button>
               </div>
-            </form>
+            </div>
           </div>
-          
         </div>
+      </div>
+      <div v-else>
+        <div v-if="showSpinner" class="flex justify-center items-center space-x-2">
+          <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-600"
+            role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        <div v-else>
+          <div v-if="showError">
+            <div class="flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+              role="alert">
+              <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span class="sr-only">Invalid credentials</span>
+              <div>
+                <span class="font-medium">Entered username / password incorrect</span><br />
+                <span class="font-medium">Please enter valid credentials</span>
+              </div>
+            </div>
+          </div>
+          <form>
+            <div class="py-6">
+              <h1 class="font-bold font-serif mb-3 text-xl md:text-2xl text-indigo-900">Manage your preference center
+              </h1>
+            </div>
+            <div class="py-6">
+              <div class="my-2">
+                <label class="block mb-1 text-slate-600 text-sm" for="username">User name</label>
+                <input class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" v-bind:type="type"
+                  name="username" id="username" v-model="user.user_name">
+              </div>
+              <div class="my-2">
+                <label class="block mb-1 text-slate-600 text-sm" for="password">Password</label><input
+                  class="block border-2 border-solid border-slate-200 w-full max-w-xs rounded" type="password"
+                  name="password" id="password" v-model="user.password">
+              </div>
+            </div>
+            <div class="text-center">
+              <button @click="doLogin" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white"
+                type="submit">Login</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
     </div>
   </main>
   <footer class="bg-indigo-800 px-5">
@@ -1020,11 +1122,35 @@
     </div>
   </footer>
 
-  
-  
+
+  <script>
+    window.onload = function () {
+      const anchorTags = document.querySelectorAll('a');
+      anchorTags.forEach(function (a) {
+        a.addEventListener('click', function (ev) {
+          ev.preventDefault();
+        })
+      });
+      const dropdownEl = document.querySelector('[data-dropdown-toggle]');
+      if (dropdownEl) {
+        dropdownEl.click();
+      }
+      const modalEl = document.querySelector('[data-modal-toggle]');
+      if (modalEl) {
+        modalEl.click();
+      }
+      const dateRangePickerEl = document.querySelector('[data-rangepicker] input');
+      if (dateRangePickerEl) {
+        dateRangePickerEl.focus();
+      }
+      const drawerEl = document.querySelector('[data-drawer-show]');
+      if (drawerEl) {
+        drawerEl.click();
+      }
+    }
+  </script>
   <script type="module">
     import { createApp } from 'vue'
-
         const app = createApp({
           data() {
             return {
@@ -1032,7 +1158,23 @@
               type:"text",
               headers : { "Content-Type": "application/json" },
               showSpinner : false,
+              errorMessage : '',
+              successMessage : 'Logged in successfully',
               showError : false,
+              selectedAction : '',
+              searchObj : {},
+              records : [],
+              buttonName : '',
+              selectedDE : '',
+              api_url:'https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/ig11ktgzwam',
+              selected_config_obj:{},
+              showrecordstable : false,
+              showFieldsSection : false,
+              confirmButtonDisable : false,
+              show_de_picklist:false,
+              label_name : '',
+              actions : ['Add','Update','Delete'],
+              obj_config : new Map(),
               url : "https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/a32jwmqkvaa",
               adminKey : 'F3D7F9DA-6E42-4880-B7E6-1DFAF6C4C07A',
               user:{
@@ -1047,6 +1189,175 @@
             }
           },  
           methods: {
+            doUpsert : function(event){
+              var payloadBody = [];
+              this.records.forEach(record=>{
+                var obj = {};
+                obj.CustomerKey = this.selected_config_obj.key;
+                obj.Properties = [];
+                for(var key in record)
+                {
+                  obj.Properties.push({Name:key,Value : record[key]});
+                }
+                payloadBody.push(obj);
+              })
+              var payload = {
+                target : this.selected_config_obj.key,
+                body : payloadBody
+              }
+              //do api call
+              console.log('payload',payload);
+              this.doCallOut('POST',payload,'UPSERT',null);
+            },
+            doAction(event){
+              console.log(event.target.name);
+              if(this.selectedAction == 'Update'){
+                this.searchObj.target = this.selected_config_obj.key;
+                const queryParams = new URLSearchParams(this.searchObj).toString();
+                console.log('queryParams',queryParams);
+                this.doCallOut('GET',null,'SEARCH',queryParams)
+
+              }else if(this.selectedAction == 'Delete'){
+                var payload = {
+                  target : this.selected_config_obj.key,
+                  masterPreferences : {
+                    key : 'Master_Preferences',
+                    uniqueField : 'Preference_ID'
+                  },
+                  body : this.searchObj
+                };
+                console.log(payload);
+                this.doCallOut('DELETE',payload,'DELETE',null)
+              }
+            },
+            doCallOut : function(method,payload,source,queryParams){
+              const headers = { "Content-Type": "application/json" };
+                fetch(source === 'SEARCH' ? this.api_url+'?'+queryParams : this.api_url , {
+                  method: method,
+                  headers: headers,
+                  body : method==='GET'?null:JSON.stringify(payload)
+                }).then((response)=>response.json()).then((data)=>{
+                  console.log('d',data);
+                  if(source === 'SEARCH'){
+                    if(data.statusCode === 200){
+                      this.records = data.records;
+                      this.buttonName = 'Upsert';
+                      this.showSuccessMessage = true;
+                      this.successMessage = 'Records found successfully';
+                      this.showrecordstable = true;
+                      this.showFieldsSection = false;
+                    }else{
+                      this.showError = true;
+                      this.errorMessage = data.errors.join("<br/>")
+                    }
+                    
+                  }else if(source === 'UPSERT'){
+                    if(data.statusCode === 200){
+                      this.showSuccessMessage = true;
+                      this.successMessage = 'Records deleted successfully';
+                    }else{
+                      this.showError = true;
+                      this.errorMessage = data.errors.join("<br/>")
+                    }
+                    this.showFieldsSection = false;
+                    this.showrecordstable = false;
+                    this.showSuccessMessage = true;
+                    this.successMessage = 'Records upserted successfully';
+                  }else if(source === 'DELETE'){
+                    if(data.statusCode === 200){
+                      this.showSuccessMessage = true;
+                    this.successMessage = 'Records deleted successfully';
+                    }else{
+                      this.showError = true;
+                      console.log(data.errors.join("\r\n"));
+                      this.errorMessage = data.errors.join("\r\n");
+                    }
+                    
+                  }
+                  
+                }).catch(err=>{
+                  console.log(err);
+                  this.showError = true;
+                  this.errorMessage = JSON.stringify(err);
+                }).finally(()=>{
+                 if(source === 'UPSERT' || source === 'DELETE'){
+                    setTimeout(()=>{
+                      this.showFieldsSection = false;
+                      this.showrecordstable = false;
+                      this.showSuccessMessage = false;
+                      this.successMessage = '';
+                      this.showError = false;
+                      this.errorMessage = '';
+                      this.confirmButtonDisable = false;
+                    },5000)
+                  }
+                })
+            },
+            addRows : function(event){
+              console.log('asdf');
+              this.showrecordstable = false;
+              var record = {};
+              this.selected_config_obj.fields.forEach(field=>{
+                record = {...record,[field.name]:""};
+              });
+              this.records.push(record);
+              this.showrecordstable = true;
+            },
+            removeRows : function(index){
+              this.records.splice(index,1);
+            },
+            doshowRecordtable : function(event){
+              if(this.selectedDE == ''){
+                this.showError = true;
+                this.errorMessage = 'Please select DE';
+                this.showrecordstable = true;
+              }else{
+                this.confirmButtonDisable = true;
+                this.showError = false;
+                this.records = [];
+                this.selected_config_obj = this.obj_config.get(this.selectedDE);
+                var record = {};
+                this.selected_config_obj.fields.forEach(field=>{
+                  record = {...record,[field.name]:""};
+                });
+                this.records.push(record);
+              }
+              console.log('sdf',this.selectedAction);
+              if(this.selectedAction === 'ADD' || this.selectedAction === 'Add'){
+                this.showrecordstable = true;
+                this.showFieldsSection = false;
+              }else{
+                this.showrecordstable = false;
+                this.showFieldsSection = true;
+              }
+            },
+            change_in_action: function(event){
+              this.confirmButtonDisable = false;
+              this.records = [];
+              if(event.target.value === ''){
+                this.show_de_picklist = false;
+              }else if(event.target.value === 'Add'){
+                  this.label_name = 'record/s to the data extension';
+                  this.buttonName = 'Upsert';
+                  this.show_de_picklist = true;
+                  
+              }else if(event.target.value === 'Update' ){
+                this.label_name = 'record/s in the data extension';
+                this.buttonName = 'Search';
+                this.show_de_picklist = true;
+              }else{
+                this.label_name = 'record/s from the data extension';
+                this.buttonName = 'Search';
+                this.show_de_picklist = true;
+              }
+            },
+            doLogOut : function(event){
+              this.showSpinner = true;
+              this.loginCompleted = false;
+              setTimeout(()=>{
+                this.showSpinner = false;
+              },3000)
+            },
             doLogin : function(event){
               this.showSpinner = true;
               event.preventDefault();
@@ -1077,7 +1388,7 @@
                   this.showSpinner = false;
                   this.loginCompleted = true;
                   this.showSuccessMessage = true;
-                  this.showSuccessMessage = false;
+                  this.successMessage = 'Logged in successfully';
                   const dropdownEl = document.querySelector('[data-dropdown-toggle]');
                   if (dropdownEl) {
                       dropdownEl.click();
@@ -1088,10 +1399,129 @@
                 }
               }).catch((err)=>{
                 console.log('err',err)
+              }).finally(()=>{
+                this.showSuccessMessage = false;
               })
             }
           },
-        
+          created(){
+            this.obj_config.set('Preferences',{
+              fields : [{
+                "name":"Preference_Type",
+                "label":"Preference_Type",
+                "type":"text",
+                "tooltip":""
+              },
+              {
+                "name":"Default_Values",
+                "label":"Default_Values",
+                "type":"text",
+                "tooltip":""
+              },
+              {
+                "name":"BU_ID",
+                "label":"BU_ID",
+                "type":"text",
+                "tooltip":""
+              },
+              {
+                "name":"Preference_ID",
+                "label":"Preference_ID",
+                "type":"text",
+                "tooltip":""
+              },
+              {
+                "name":"Category_ID",
+                "label":"Category_ID",
+                "type":"text",
+                "tooltip":""
+              }
+              ],
+              key : "BU_Preferences"
+            });
+            this.obj_config.set('Labels',{
+              fields : [{
+                "name":"BU_ID",
+                "label":"BU_ID",
+                "type":"text",
+                "tooltip":""
+              },
+              {
+                "name":"Preference_ID",
+                "label":"Preference_ID",
+                "type":"text",
+                "tooltip":""
+              },
+              {
+                "name":"Language_Code",
+                "label":"Language_Code",
+                "type":"text",
+                "tooltip":""
+              },
+              {
+                "name":"Label_Values",
+                "label":"Label_Values",
+                "type":"text",
+                "tooltip":""
+              }],
+              key : "Preference_Labels"
+            });
+            this.obj_config.set('Values',{
+              fields : [{
+                "name":"BU_ID",
+                "label":"BU_ID",
+                "type":"text",
+                "tooltip":""
+              },
+              {
+                "name":"Preference_ID",
+                "label":"Preference_ID",
+                "type":"text",
+                "tooltip":""
+              },
+              {
+                "name":"Language_Code",
+                "label":"Language_Code",
+                "type":"text",
+                "tooltip":""
+              },
+              {
+                "name":"Option_Value",
+                "label":"Option_Value",
+                "type":"text",
+                "tooltip":""
+              }],
+              key : "Preference_Values"
+            });
+            this.obj_config.set('Categories',{
+              fields : [{
+                "name":"BU_ID",
+                "type":"text",
+                "label":"BU_ID",
+                "tooltip":""
+              },
+              {
+                "name":"Category_ID",
+                "label":"Category_ID",
+                "type":"text",
+                "tooltip":""
+              },
+              {
+                "name":"Category_Label",
+                "label":"Category_Label",
+                "type":"text",
+                "tooltip":""
+              },
+              {
+                "name":"Category_Index",
+                "label":"Category_Index",
+                "type":"text",
+                "tooltip":""
+              }],
+              key : "BU_Preference_Categories"
+            });
+
+          },
           // Lifecycle hooks are called at different stages
           // of a component's lifecycle.
           // This function will be called when the component is mounted.
@@ -1103,7 +1533,7 @@
         
         app.mount('#app')
     </script>
-    <script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
+    <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
 </body>
 
 
