@@ -952,17 +952,17 @@
                 <thead>
                   <tr>
                     <!-- <th>BU ID</th> -->
-                    <th>Category ID</th>
-                    <th>Category Label</th>
-                    <th>Category Index</th>
-                    <th>Actions</th>
+                    <th class="w-1/5">Category ID</th>
+                    <th class="w-2/5">Category Label</th>
+                    <th class="w-1/5">Category Index</th>
+                    <th class="w-1/5">Actions</th>
                   </tr>
                   <tr v-for="category in base_data.categories" :key="category.Category_ID">
                    <!-- <td>{{ category.BU_ID }}</td> -->
-                    <td>{{ category.Category_ID }}</td>
-                    <td>{{ category.Category_Label }}</td>
-                    <td>{{ category.Category_Index }}</td>
-                    <td><a href="#Edit">Edit</a> | <a href="#Delete">Delete</a></td>
+                    <td class="w-1/5">{{ category.Category_ID }}</td>
+                    <td class="w-2/5">{{ category.Category_Label }}</td>
+                    <td class="w-1/5">{{ category.Category_Index }}</td>
+                    <td class="w-1/5"><a href="#Edit">Edit</a> | <a href="#Delete">Delete</a></td>
                   </tr>
                 </thead>
 
