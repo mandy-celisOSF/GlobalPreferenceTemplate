@@ -950,14 +950,14 @@
               
               <table>
                 <thead>
-                  <tr class="bg-slate-200">
+                  <tr class="bg-slate-200 border border-slate-200">
                     <!-- <th>BU ID</th> -->
                     <th class="w-1/5 p-3 text-center">Category ID</th>
                     <th class="w-2/5 p-3 text-center">Label</th>
                     <th class="w-1/5 p-3 text-center">Index</th>
                     <th class="w-1/5 p-3 text-center">Actions</th>
                   </tr>
-                  <tr v-for="category in base_data.categories" :key="category.Category_ID">
+                  <tr class="border-b border-r border-l border-slate-200" v-for="category in base_data.categories" :key="category.Category_ID">
                    <!-- <td>{{ category.BU_ID }}</td> -->
                     <td class="w-1/5 p-3 text-center">{{ category.Category_ID }}</td>
                     <td class="w-2/5 p-3 text-center">{{ category.Category_Label }}</td>
