@@ -947,7 +947,27 @@
 
             <div class="py-6">
               <h2 class="font-bold font-serif mb-3 text-lg md:text-xl text-indigo-900">Manage categories</h2>
-              <p>{{ this.base_data }}</p>
+              
+              <table>
+                <thead>
+                  <tr>
+                    <th>BU ID</th>
+                    <th>Category ID</th>
+                    <th>Category Label</th>
+                    <th>Category Index</th>
+                    <th>Actions</th>
+                  </tr>
+                  <tr v-for="category in categories" :key="category.Category_ID">
+                    <td>{{ category.BU_ID }}</td>
+                    <td>{{ category.Category_ID }}</td>
+                    <td>{{ category.Category_Label }}</td>
+                    <td>{{ category.Category_Index }}</td>
+                    <td><a href="#Edit">Edit</a> | <a href="#Delete">Delete</a></td>
+                  </tr>
+                </thead>
+
+              </table>
+              
             </div>
 
           </form>
@@ -1076,12 +1096,9 @@
             getBaseData(){
               const headers = { "Content-Type": "application/json" };
               const body = {
-                //customer_id : this.base_config.customer_id,
                 master_preference_de : this.base_config.master_preferences_de,
                 preferences_de : this.base_config.preferences_target_de,
-                //locale: this.base_config.customer_locale,
                 buId: this.base_config.admin_BU,
-                //master_customer_de : this.base_config.master_customer_de,
                 preferences_values_de : this.base_config.preferences_values_de,
                 preferences_labels_de : this.base_config.preferences_labels_de,
                 categories_de : this.base_config.categories_de
