@@ -697,7 +697,7 @@
     }
 
     .rounded {
-      border-radius: 0.25rem
+      border-radius: 0.25rem 
     }
 
     .rounded-full {
@@ -964,7 +964,7 @@
               </table>
 
               <div class="py-3">
-                <a @click="addPreference" class="inline-block rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white">Add a preference</a>
+                <a @click="addPreference" class="inline-block cursor-pointer rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white">Add a preference</a>
               </div>
 
             </div>
@@ -994,7 +994,7 @@
               </table>
               
               <div class="py-3">
-                <a @click="addCategory" class="inline-block rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white">Add a category</a>
+                <a @click="addCategory" class="inline-block cursor-pointer rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white">Add a category</a>
               </div>
             </div>
 
@@ -1201,6 +1201,7 @@
                 master_preference_de : this.base_config.master_preferences_de,
                 preferences_de : this.base_config.preferences_de,
                 buId: this.base_config.admin_BU,
+                locale: "en_AU",
                 preferences_values_de : this.base_config.preferences_values_de,
                 preferences_labels_de : this.base_config.preferences_labels_de,
                 categories_de : this.base_config.categories_de
