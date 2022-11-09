@@ -942,8 +942,7 @@
 
             <div class="py-6">
               <h2 class="font-bold font-serif mb-3 text-lg md:text-xl text-indigo-900">Manage preferences</h2>
-              {{ base_data.preferences}}
-              <!-- <table>
+              <table>
                 <thead>
                   <tr class="bg-slate-200 border border-slate-200">
                     <th class="w-1/5 p-3 text-center">Preference ID</th>
@@ -952,16 +951,17 @@
                     <th class="w-1/5 p-3 text-center">Category</th>
                     <th class="w-1/5 p-3 text-center">Actions</th>
                   </tr>
-                  <tr class="border-b border-r border-l border-slate-200" v-for="category in base_data.categories" :key="category.Category_ID">
-                    <td class="w-1/5 p-3 text-center">{{ category.Category_ID }}</td>
-                    <td class="w-2/5 p-3 text-center">{{ category.Category_Label }}</td>
-                    <td class="w-1/5 p-3 text-center">{{ category.Category_Index }}</td>
+                  <tr class="border-b border-r border-l border-slate-200" v-for="preference in base_data.preferences" :key="preference.Preference_ID">
+                    <td class="w-1/5 p-3 text-center">{{ preference.Preference_ID }}</td>
+                    <td class="w-1/5 p-3 text-center">{{ preference.Preference_Type }}</td>
+                    <td class="w-1/5 p-3 text-center">{{ preference.Default_Values }}</td>
+                    <td class="w-1/5 p-3 text-center">{{ preference.Category_ID }}</td>
                     <td class="w-1/5 p-3 text-center">
-                      <a @click="editCategory" href="#" class="text-indigo-600 underline">Edit</a> | 
+                      <a @click="editPreference" href="#" class="text-indigo-600 underline">Edit</a> | 
                       <a href="#" class="text-indigo-600 underline">Delete</a></td>
                   </tr>
                 </thead>
-              </table> -->
+              </table>
             </div>
 
             <div class="py-6">
@@ -1103,6 +1103,9 @@
               }
             },
             editCategory () {
+              this.showModal = true;
+            },
+            editPreference () {
               this.showModal = true;
             },
             closeModal() {
