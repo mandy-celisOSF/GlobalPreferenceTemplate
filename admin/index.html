@@ -963,7 +963,7 @@
                 </thead>
               </table>
 
-              <div class="py-3">
+              <div class="py-6">
                 <a @click="addPreference" class="inline-block cursor-pointer rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white">Add a preference</a>
               </div>
 
@@ -993,7 +993,7 @@
                 </thead>
               </table>
               
-              <div class="py-3">
+              <div class="py-6">
                 <a @click="addCategory" class="inline-block cursor-pointer rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white">Add a category</a>
               </div>
             </div>
@@ -1120,6 +1120,7 @@
             editPreference () {
               this.updateData.action = "Edit";
               this.updateData.type = "Preference";
+              this.updateData.object = {};
               this.showModal = true;
             },
             addCategory () {
@@ -1136,6 +1137,15 @@
             addPreference () {
               this.updateData.action = "Add";
               this.updateData.type = "Preference";
+              this.updateData.object = {
+                BU_ID: "",
+                Preference_ID: "",
+                Category_ID: "",
+                Preference_Label: "",
+                Language_Code: "en_AU",
+                Preference_Type: "Boolean",
+                Default_Values: "True"
+              }
               this.showModal = true;
             },
             closeModal() {
