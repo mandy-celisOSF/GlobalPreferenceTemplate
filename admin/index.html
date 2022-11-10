@@ -987,7 +987,7 @@
                     <td class="w-2/5 p-3 text-center">{{ category.Category_Label }}</td>
                     <td class="w-1/5 p-3 text-center">{{ category.Category_Index }}</td>
                     <td class="w-1/5 p-3 text-center">
-                      <a @click="editCategory" href="#" class="text-indigo-600 underline">Edit</a> | 
+                      <a @click="editCategory($event, category)" href="#" class="text-indigo-600 underline">Edit</a> | 
                       <a href="#" class="text-indigo-600 underline">Delete</a></td>
                   </tr>
                 </thead>
@@ -1110,10 +1110,11 @@
                   }, 1000)
               }
             },
-            editCategory () {
+            editCategory (event, category) {
               this.updateData.action = "Edit";
               this.updateData.type = "Category";
               this.showModal = true;
+              console.log(category);
             },
             editPreference () {
               this.updateData.action = "Edit";
@@ -1219,16 +1220,7 @@
 
                       data.preferences.forEach(pref=>{
                           var each_pref = {...pref};
-                         // each_pref.Value = each_pref.Value === 'True';
                           each_pref.label = data.pref_labels.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Label_Values;
-                          // each_pref.type = data.bu_preferences.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Preference_Type;
-                          
-                          // each_pref.category = data.bu_preferences.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Category_ID;
-                          // if(each_pref.type != 'Boolean'){
-                          //     each_pref.translated_value = data.pref_values.filter(item=>item.Preference_ID===pref.Preference_ID)[0]?.Option_Value;
-                          // }else{
-                          //   each_pref.translated_value = 'True/False';
-                          // }
                           this.base_data.preferences.push(each_pref);
                       });
 
