@@ -1125,13 +1125,12 @@
             addCategory () {
               this.updateData.action = "Add";
               this.updateData.type = "Category";
-              this.updateDate.object = {
-                action: "",
+              this.updateData.object = {
                 Category_ID: "",
                 BU_ID: "",
                 Category_Label: "",
                 Category_Index: ""
-              }
+              };
               this.showModal = true;
             },
             addPreference () {
