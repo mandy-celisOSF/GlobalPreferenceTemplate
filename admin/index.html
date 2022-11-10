@@ -1116,6 +1116,7 @@
               this.updateData.type = "Category";
               this.updateData.object = category;
               this.showModal = true;
+              console.log("on open " + this.updateData);
             },
             editPreference () {
               this.updateData.action = "Edit";
@@ -1150,7 +1151,7 @@
             },
             closeModal() {
               this.showModal = false;
-              console.log(this.updateData);
+              console.log("on close "+this.updateData);
             },
             // savePreferences(event) {
             //     event.preventDefault();
