@@ -1220,8 +1220,8 @@
                       data.preferences.forEach(pref=>{
                           var each_pref = {...pref};
                          // each_pref.Value = each_pref.Value === 'True';
-                          each_pref.label = data.pref_labels.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Label_Values
-                          each_pref.type = data.bu_preferences.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Preference_Type;
+                          each_pref.label = data.pref_labels.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Label_Values;
+                          // each_pref.type = data.bu_preferences.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Preference_Type;
                           
                           // each_pref.category = data.bu_preferences.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Category_ID;
                           // if(each_pref.type != 'Boolean'){
