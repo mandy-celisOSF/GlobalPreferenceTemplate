@@ -1219,7 +1219,7 @@
                 master_preference_de : this.base_config.master_preferences_de,
                 preferences_de : this.base_config.preferences_de,
                 buId: this.base_config.admin_BU,
-                locale: "en_AU",
+                locale: this.base_config.admin_locale,
                 preferences_values_de : this.base_config.preferences_values_de,
                 preferences_labels_de : this.base_config.preferences_labels_de,
                 categories_de : this.base_config.categories_de
@@ -1267,9 +1267,9 @@
                   try{
                     let jsonObj = {
                       //"customer_id" : urlParams.get('customer_id'),
-                      //"customer_locale" : urlParams.get('customer_locale')?urlParams.get('customer_locale'):'en_AU',
+                      "admin_locale" : urlParams.get('customer_locale')?urlParams.get('customer_locale'):'en_AU',
                       "admin_BU" : urlParams.get('buId'),
-                      "pref_retrievalURL" : "https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/on5n3yy2swe",
+                      "pref_retrievalURL" : "https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/uhize2eytag",
                       //"pref_processing_URL":"https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/nk4ctlggevc",
                       "captcha" : {
                         "key": "google_site_key"
