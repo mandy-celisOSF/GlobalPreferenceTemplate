@@ -1114,9 +1114,8 @@
             editCategory (event, category) {
               this.updateData.action = "Edit";
               this.updateData.type = "Category";
-              this.showModal = true;
-              //console.log(category);
               this.updateData.object = category;
+              this.showModal = true;
             },
             editPreference () {
               this.updateData.action = "Edit";
@@ -1126,6 +1125,13 @@
             addCategory () {
               this.updateData.action = "Add";
               this.updateData.type = "Category";
+              this.updateDate.object = {
+                action: "",
+                Category_ID: "",
+                BU_ID: "",
+                Category_Label: "",
+                Category_Index: ""
+              }
               this.showModal = true;
             },
             addPreference () {
