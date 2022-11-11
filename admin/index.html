@@ -1209,6 +1209,8 @@
                           top.location.href = top.location.href;
                         },3000)
                         this.countDownTimer();
+                      } else {
+                        this.error = true;
                       }
                     }).catch(err=>{
                       this.processed = true;
