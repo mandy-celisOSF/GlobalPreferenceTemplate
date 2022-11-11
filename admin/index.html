@@ -1048,7 +1048,7 @@
               </div>
             </div>
             <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-              <button @click="closeModal" type="button" class="inline-flex w-full justify-center rounded-full border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Done</button>
+              <button @click="saveChanges" type="button" class="inline-flex w-full justify-center rounded-full border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Done</button>
               <button @click="closeModal" type="button" class="mt-3 inline-flex w-full justify-center rounded-full border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
             </div>
           </div>
@@ -1095,7 +1095,7 @@
               success : false,
               error : false,
               showModal: false,
-              prev_Category_ID: undefined,
+              prev_ID: undefined,
               updateData: {}
             }
           },
@@ -1121,7 +1121,7 @@
               this.updateData.action = "Edit";
               this.updateData.type = "Category";
               this.updateData.object = category;
-              this.prev_Category_ID = category.Category_ID;
+              this.prev_ID = category.Category_ID;
               this.showModal = true;
             },
             editPreference () {
@@ -1157,72 +1157,61 @@
             },
             closeModal() {
               this.showModal = false;
-              console.log("Updated Data");
-              console.log(this.updateData);
-              console.log(this.prev_Category_ID);
+              // console.log("Updated Data");
+              // console.log(this.updateData);
+              // console.log(this.prev_Category_ID);
             },
-            // saveChanges(event) {
-            //     event.preventDefault();
-            //     this.showSpinner = true;
-            //     this.processed = true;
-            //     setTimeout(()=>{
-            //       this.getPayloadForSave(this.base_config,this.base_data).then((payload)=>{
-            //         const headers = { "Content-Type": "application/json" };
-            //         fetch(this.base_config.pref_processing_URL, {
-            //           method: 'POST',
-            //           headers: headers,
-            //           body: JSON.stringify(payload)
-            //         }).then((response)=>response.json()).then((data)=>{
-            //           this.responseData = data;
-            //           if(this.responseData.status === 'OK'){
-            //             this.processed = true;
-            //             this.success = true;
-            //             setTimeout(()=>{
-            //               top.location.href = top.location.href;
-            //             },3000)
-            //             this.countDownTimer();
-            //           }
-            //         }).catch(err=>{
-            //           this.processed = true;
-            //           this.success = false;
-            //           this.error = true;
-            //         }).finally(()=>{
-            //           this.showSpinner = false;
-            //         })
-            //       })
-            //     },2000)
-            // },
-            // getPayloadForSave(base_config,base_data){
-            //   return new Promise(function (resolve,reject){
-            //       try{
-            //         var payload = {
-            //           customer_id : base_config.customer_id,
-            //           subscriber_BU: base_config.subscriber_BU,
-            //           master_customer_de : base_config.master_customer_de,
-            //           customer_info : {
-            //             customer_email : base_data.customer.EmailAddress,
-            //             customer_firstName : base_data.customer.FirstName,
-            //             customer_lastName : base_data.customer.LastName
-            //           },
-            //           master_preference_de : base_config.master_preferences_de,
-            //           preferences : []
-            //         };
-            //         base_data.preferences.forEach(pref=>{
-            //           payload.preferences.push(
-            //           {
-            //             Preference_ID : pref.Preference_ID,
-            //             Customer_ID : base_config.customer_id,
-            //             BU_ID : base_config.subscriber_BU,
-            //             Value : pref.Value?'True':'False'
-            //           });
-            //         });
-            //         resolve(payload) ;
-            //       }
-            //       catch(err){
-            //         reject(err);
-            //       }
-            //   })
-            // },
+            saveChanges(event) {
+                event.preventDefault();
+                this.showSpinner = true;
+                this.processed = true;
+                setTimeout(()=>{
+                  this.getPayloadForSave(this.base_config,this.updateData, this.prev_ID).then((payload)=>{
+                    const headers = { "Content-Type": "application/json" };
+                    fetch(this.base_config.pref_processing_URL, {
+                      method: 'POST',
+                      headers: headers,
+                      body: JSON.stringify(payload)
+                    }).then((response)=>response.json()).then((data)=>{
+                      this.responseData = data;
+                      if(this.responseData.status === 'OK'){
+                        this.processed = true;
+                        this.success = true;
+                        setTimeout(()=>{
+                          top.location.href = top.location.href;
+                        },3000)
+                        this.countDownTimer();
+                      }
+                    }).catch(err=>{
+                      this.processed = true;
+                      this.success = false;
+                      this.error = true;
+                    }).finally(()=>{
+                      this.showSpinner = false;
+                      this.showModal = false;
+                    })
+                  })
+                },2000)
+            },
+            getPayloadForSave(base_config, updateData, prev_ID){
+              return new Promise(function (resolve,reject){
+                  try{
+                    var payload = {
+                      BU_ID : base_config.admin_BU,
+                      preferences_de : base_config.preferences_de,
+                      categories_de: base_config.categories_de,
+                      action: updateData.action,
+                      type: updateData.type,
+                      updateData: updateData,
+                      prev_ID: prev_ID
+                    };
+                    resolve(payload) ;
+                  }
+                  catch(err){
+                    reject(err);
+                  }
+              })
+            },
             getBaseData(){
               const headers = { "Content-Type": "application/json" };
               const body = {
@@ -1280,7 +1269,7 @@
                       "admin_locale" : urlParams.get('customer_locale')?urlParams.get('customer_locale'):'en_AU',
                       "admin_BU" : urlParams.get('buId'),
                       "pref_retrievalURL" : "https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/uhize2eytag",
-                      //"pref_processing_URL":"https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/nk4ctlggevc",
+                      "pref_processing_URL":"https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/0jtp1tfidu2",
                       "captcha" : {
                         "key": "google_site_key"
                       },
