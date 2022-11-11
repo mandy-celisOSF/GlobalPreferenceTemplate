@@ -1184,8 +1184,8 @@
                       this.base_data.ordered_categories.forEach(category=> {
                         var category_ID = category.Category_ID;
                         console.log(category_ID);
-                        var categoryLength = this.base_data.preferences.filter(item=>item.category===category_ID).length;
-                        category.length = categoryLength;
+                        console.log(this.base_data.preferences);
+                        category.length = this.base_data.preferences.filter(item=>item.category===category_ID).length;
                       })
                       
                   })
@@ -1195,7 +1195,7 @@
                     this.showPage = true;
                     this.showSpinner = false;
                     this.jsonStr = JSON.stringify(this.base_data, null, 2);
-                    console.log(this.base_data);
+                    //console.log(this.base_data);
                   });
                 
             },
