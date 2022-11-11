@@ -1167,6 +1167,7 @@
                 this.processed = true;
                 setTimeout(()=>{
                   this.getPayloadForSave(this.base_config,this.updateData, this.prev_ID).then((payload)=>{
+                    console.log(payload);
                     const headers = { "Content-Type": "application/json" };
                     fetch(this.base_config.pref_processing_URL, {
                       method: 'POST',
