@@ -1114,15 +1114,13 @@
             },
             updateFormValue($event, key) {
       this.updateData.object[key] = $event.target.value;
-      console.log(this.updateData); 
+      //console.log(this.updateData); 
     },
             editCategory (event, category) {
               this.updateData.action = "Edit";
               this.updateData.type = "Category";
               this.updateData.object = category;
               this.showModal = true;
-              console.log("on open");
-              console.log(this.updateData);
             },
             editPreference () {
               this.updateData.action = "Edit";
