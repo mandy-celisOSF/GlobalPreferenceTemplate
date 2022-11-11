@@ -987,7 +987,7 @@
                     <td class="w-1/5 p-3 text-center">{{ category.Category_Index }}</td>
                     <td class="w-1/5 p-3 text-center">
                       <a @click="editCategory($event, category)" href="#" class="text-indigo-600 underline">Edit</a> | 
-                      <a href="deleteCategory($event, category)" class="text-indigo-600 underline">Delete</a></td>
+                      <a @click="deleteCategory($event, category)" href="#" class="text-indigo-600 underline">Delete</a></td>
                   </tr>
                 </thead>
               </table>
@@ -1137,6 +1137,7 @@
       //console.log(this.updateData); 
     },
             editCategory (event, category) {
+              event.preventDefault();
               this.updateData.action = "Edit";
               this.updateData.type = "Category";
               this.updateData.object = category;
@@ -1144,6 +1145,7 @@
               this.showModal = true;
             },
             deleteCategory(event, category) {
+              event.preventDefault();
               this.updateData.action = "Delete";
               this.updateData.type = "Category";
               this.updateData.object = category;
