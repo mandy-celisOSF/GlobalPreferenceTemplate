@@ -1095,7 +1095,7 @@
               success : false,
               error : false,
               showModal: false,
-              prev_Category_ID: undefined,
+              //prev_Category_ID: undefined,
               updateData: {}
             }
           },
@@ -1121,7 +1121,7 @@
               this.updateData.action = "Edit";
               this.updateData.type = "Category";
               this.updateData.object = category;
-              this.prev_Category_ID = category.Category_ID;
+              this.updateData.prev_Category_ID = category.Category_ID;
               this.showModal = true;
             },
             editPreference () {
@@ -1161,7 +1161,7 @@
               console.log(this.updateData);
               console.log(this.prev_Category_ID);
             },
-            // savePreferences(event) {
+            // saveChanges(event) {
             //     event.preventDefault();
             //     this.showSpinner = true;
             //     this.processed = true;
