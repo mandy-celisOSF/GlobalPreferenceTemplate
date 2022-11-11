@@ -1095,7 +1095,7 @@
               success : false,
               error : false,
               showModal: false,
-              //prev_Category_ID: undefined,
+              prev_Category_ID: undefined,
               updateData: {}
             }
           },
@@ -1121,7 +1121,7 @@
               this.updateData.action = "Edit";
               this.updateData.type = "Category";
               this.updateData.object = category;
-              this.updateData.prev_Category_ID = category.Category_ID;
+              this.prev_Category_ID = category.Category_ID;
               this.showModal = true;
             },
             editPreference () {
