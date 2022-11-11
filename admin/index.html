@@ -922,7 +922,7 @@
         </div>
         <div v-else>
           <div v-if="success">
-            <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Thanks, your preferences have been updated</h2>
+            <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Thanks, your changes have been saved.</h2>
            <p class="text-slate-600">You will now be redirected. If you are not redirected within {{ countDown }} seconds , please click
               <a class="text-indigo-900" v-bind:href="base_config.success_url">here</a></p>
           </div>
@@ -1083,7 +1083,7 @@
           data() {
             return {
               message: "New Message",
-              countDown: 10,
+              countDown: 3,
               base_config : undefined,
               urlParams : undefined,
               base_data : undefined,
