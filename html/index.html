@@ -1180,6 +1180,12 @@
 
                       //sort categories into order
                       this.base_data.ordered_categories = data.category_labels.sort((a,b) => a.Category_Index - b.Category_Index);
+
+                      this.base_data.ordered_categories.forEach(category=> {
+                        var category_ID = category.Category_ID;
+                        var categoryLength = data.preferences.filter(item=>item.Category_ID===category_ID);
+                        category.length = categoryLength;
+                      })
                       
                   })
                   .catch((error) => {
