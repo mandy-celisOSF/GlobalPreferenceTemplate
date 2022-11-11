@@ -958,6 +958,7 @@
               </div>
                 
               <div v-for="category in base_data.ordered_categories">
+                <div v-if="category.length > 0">
                 <h2 class="font-bold font-serif mt-6 mb-3 text-lg text-indigo-900">{{ category.Category_Label }}</h2>
                 <div v-for="preference in base_data.preferences">
               <!-- preference row -->
@@ -966,6 +967,7 @@
                 <input class="appearance-none inline-block border-2 border-solid border-slate-200 mr-2 px-2 rounded w-5 h-5 checked:bg-indigo-600 focus:ring-0 focus:outline-2 focus:outline-indigo-300" type="checkbox" v-bind:name="preference.Preference_ID" v-bind:id="preference.Preference_ID" v-bind:value="preference.Value" v-model="preference.Value" @change="checkPrefSelected">
               </div>
               <!--.preference row-->
+              </div>
               </div>
               </div>
 
@@ -1184,9 +1186,8 @@
                       this.base_data.ordered_categories.forEach(category=> {
                         var category_ID = category.Category_ID;
                         console.log(category_ID);
-                       // console.log(this.base_data.preferences);
                         var categoryLength = this.base_data.preferences.filter(item=>item.category===category_ID);
-                        console.log(categoryLength.length);
+                        category.length = categoryLength.length;
                       })
                       
                   })
