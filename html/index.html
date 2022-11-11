@@ -1185,7 +1185,7 @@
                         var category_ID = category.Category_ID;
                         console.log(category_ID);
                        // console.log(this.base_data.preferences);
-                        var categoryLength = this.base_data.preferences.filter(item=>item.category===category_ID);
+                        var categoryLength = this.base_data.preferences.filter(item=>item.category===category_ID).length;
                         console.log(categoryLength);
                       })
                       
