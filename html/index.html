@@ -1183,7 +1183,7 @@
 
                       this.base_data.ordered_categories.forEach(category=> {
                         var category_ID = category.Category_ID;
-                        var categoryLength = data.preferences.filter(item=>item.Category_ID===category_ID).length;
+                        var categoryLength = data.preferences.filter(item=>item.category===category_ID).length;
                         category.length = categoryLength;
                       })
                       
