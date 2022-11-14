@@ -1039,6 +1039,14 @@
               To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           -->
 
+          <div v-if="showSpinner" class="flex justify-center items-center space-x-2">
+            <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-600" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+
+          <div v-else>
+
           <!-- delete warning -->
           <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg" v-if="updateData.action == 'Delete'">
             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -1076,6 +1084,7 @@
             </div> 
           </div>
           <!-- .add/edit form -->
+          </div>
         </div>
       </div>
     </div>
@@ -1279,6 +1288,7 @@
                         // },3000)
                         // this.countDownTimer();
                       } else if (this.responseData.status === 'FieldInUse') {
+                        this.processed = true;
                         this.showConfirmation = true;
                         this.error = true;
                         this.errorMessage = "The field you are trying to delete is currently in use and cannot be deleted.";
@@ -1286,6 +1296,7 @@
                         //   top.location.href = top.location.href;
                         // },3000)
                       } else {
+                        this.processed = true;
                         this.showConfirmation = true;
                         this.error = true;
                         this.errorMessage = "Oops, something went wrong.";
