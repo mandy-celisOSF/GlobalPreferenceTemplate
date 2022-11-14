@@ -1245,7 +1245,12 @@
               // console.log(this.prev_Category_ID);
             },
             closeConfirmation() {
+              // reset statuses for new edit
               this.showConfirmation = false;
+              this.processed = false;
+              this.success = false;
+              this.error = false;
+              this.errorMessage: "Oops, something went wrong.",
             },
             saveChanges(event) {
                 event.preventDefault();
