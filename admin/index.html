@@ -1192,39 +1192,36 @@
                 event.preventDefault();
                 this.showSpinner = true;
                 this.processed = true;
-                this.getPayloadForSave(this.base_config,this.updateData, this.prev_ID).then((payload)=>{
+                setTimeout(()=>{
+                  this.getPayloadForSave(this.base_config,this.updateData, this.prev_ID).then((payload)=>{
                     console.log(payload);
-                });
-                // setTimeout(()=>{
-                //   this.getPayloadForSave(this.base_config,this.updateData, this.prev_ID).then((payload)=>{
-                //     console.log(payload);
-                //     const headers = { "Content-Type": "application/json" };
-                //     fetch(this.base_config.pref_processing_URL, {
-                //       method: 'POST',
-                //       headers: headers,
-                //       body: JSON.stringify(payload)
-                //     }).then((response)=>response.json()).then((data)=>{
-                //       this.responseData = data;
-                //       if(this.responseData.status === 'OK'){
-                //         this.processed = true;
-                //         this.success = true;
-                //         setTimeout(()=>{
-                //           top.location.href = top.location.href;
-                //         },3000)
-                //         this.countDownTimer();
-                //       } else {
-                //         this.error = true;
-                //       }
-                //     }).catch(err=>{
-                //       this.processed = true;
-                //       this.success = false;
-                //       this.error = true;
-                //     }).finally(()=>{
-                //       this.showSpinner = false;
-                //       this.showModal = false;
-                //     })
-                //   })
-                // },2000)
+                    const headers = { "Content-Type": "application/json" };
+                    fetch(this.base_config.pref_processing_URL, {
+                      method: 'POST',
+                      headers: headers,
+                      body: JSON.stringify(payload)
+                    }).then((response)=>response.json()).then((data)=>{
+                      this.responseData = data;
+                      if(this.responseData.status === 'OK'){
+                        this.processed = true;
+                        this.success = true;
+                        setTimeout(()=>{
+                          top.location.href = top.location.href;
+                        },3000)
+                        this.countDownTimer();
+                      } else {
+                        this.error = true;
+                      }
+                    }).catch(err=>{
+                      this.processed = true;
+                      this.success = false;
+                      this.error = true;
+                    }).finally(()=>{
+                      this.showSpinner = false;
+                      this.showModal = false;
+                    })
+                  })
+                },2000)
             },
             getPayloadForSave(base_config, updateData, prev_ID){
               return new Promise(function (resolve,reject){
