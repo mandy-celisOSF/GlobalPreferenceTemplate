@@ -927,8 +927,8 @@
               <a class="text-indigo-900" v-bind:href="base_config.success_url">here</a></p>
           </div>
           <div v-if="error">
-            <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Oops, something went wrong</h2>
-            <p class="text-slate-600">Please try again later</p>
+            <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Oops, something went wrong.</h2>
+            <p>{{ errorMessage }}</p>
           </div>
         </div>
         
@@ -1115,7 +1115,8 @@
               error : false,
               showModal: false,
               prev_ID: undefined,
-              updateData: {}
+              updateData: {},
+              errorMessage: "Please refresh or try again later."
             }
           },
           filters: {
@@ -1209,8 +1210,18 @@
                           top.location.href = top.location.href;
                         },3000)
                         this.countDownTimer();
+                      } else if (this.responseData.status === 'InUse') {
+                        this.error = true;
+                        this.errorMessage = "The field you are trying to delete is currently in use and cannot be deleted.";
+                        setTimeout(()=>{
+                          top.location.href = top.location.href;
+                        },3000)
                       } else {
                         this.error = true;
+                        this.errorMessage = "Please refresh or try again later.";
+                        setTimeout(()=>{
+                          top.location.href = top.location.href;
+                        },3000)
                       }
                     }).catch(err=>{
                       this.processed = true;
