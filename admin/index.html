@@ -1282,27 +1282,17 @@
                       if(this.responseData.status === 'OK'){
                         this.processed = true;
                         this.success = true;
-                        this.showConfirmation = true;
-                        // setTimeout(()=>{
-                        //   top.location.href = top.location.href;
-                        // },3000)
-                        // this.countDownTimer();
+                        //this.showConfirmation = true;
                       } else if (this.responseData.status === 'FieldInUse') {
                         this.processed = true;
-                        this.showConfirmation = true;
+                        //this.showConfirmation = true;
                         this.error = true;
                         this.errorMessage = "The field you are trying to delete is currently in use and cannot be deleted.";
-                        // setTimeout(()=>{
-                        //   top.location.href = top.location.href;
-                        // },3000)
                       } else {
                         this.processed = true;
-                        this.showConfirmation = true;
+                        //this.showConfirmation = true;
                         this.error = true;
                         this.errorMessage = "Oops, something went wrong.";
-                        // setTimeout(()=>{
-                        //   top.location.href = top.location.href;
-                        // },3000)
                       }
                     }).catch(err=>{
                       this.processed = true;
@@ -1310,7 +1300,8 @@
                       this.error = true;
                     }).finally(()=>{
                       this.showSpinner = false;
-                      this.showModal = false;
+                      //this.showModal = false;
+                      this.showConfirmation = true;
                     })
                   })
                 },2000)
