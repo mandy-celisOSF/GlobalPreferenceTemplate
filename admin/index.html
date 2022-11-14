@@ -938,7 +938,7 @@
                     <td class="w-1/5 p-3 text-center">{{ preference.Category_ID }}</td>
                     <td class="w-1/5 p-3 text-center">
                       <a @click="editPreference" href="#" class="text-indigo-600 underline">Edit</a> | 
-                      <a href="#" class="text-indigo-600 underline">Delete</a></td>
+                      <a @click="deleteCategory($event, preference)" href="#" class="text-indigo-600 underline">Delete</a></td>
                   </tr>
                 </thead>
               </table>
@@ -1197,6 +1197,13 @@
               this.updateData.object = {};
               this.showModal = true;
             },
+            deletePreference(event, preference) {
+              event.preventDefault();
+              this.updateData.action = "Delete";
+              this.updateData.type = "Preference";
+              this.updateData.object = preference;
+              this.showModal = true;
+            },
             addCategory () {
               this.updateData.action = "Add";
               this.updateData.type = "Category";
@@ -1286,6 +1293,7 @@
                   try{
                     var payload = {
                       BU_ID : base_config.admin_BU,
+                      master_preference_de : this.base_config.master_preferences_de,
                       preferences_de : base_config.preferences_de,
                       categories_de: base_config.categories_de,
                       preferences_labels_de: base_config.preferences_labels_de,
