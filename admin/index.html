@@ -1253,8 +1253,8 @@
               this.errorMessage = "Oops, something went wrong.";
               // refresh page to show saved updates
               setTimeout(()=>{
-                          top.location.href = top.location.href;
-                        },1000)
+                location.reload();
+              },1000)
             },
             saveChanges(event) {
                 event.preventDefault();
