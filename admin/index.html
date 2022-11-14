@@ -927,8 +927,8 @@
               <a class="text-indigo-900" v-bind:href="base_config.success_url">here</a></p>
           </div>
           <div v-if="error">
-            <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Oops, something went wrong.</h2>
-            <p>{{ errorMessage }}</p>
+            <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">{{ errorMessage }}</h2>
+            <p>Redirecting back to main page.</p>
           </div>
         </div>
         
@@ -1116,7 +1116,7 @@
               showModal: false,
               prev_ID: undefined,
               updateData: {},
-              errorMessage: "Please refresh or try again later."
+              errorMessage: "Oops, something went wrong."
             }
           },
           filters: {
@@ -1218,7 +1218,7 @@
                         },3000)
                       } else {
                         this.error = true;
-                        this.errorMessage = "Please refresh or try again later.";
+                        this.errorMessage = "Oops, something went wrong.";
                         setTimeout(()=>{
                           top.location.href = top.location.href;
                         },3000)
