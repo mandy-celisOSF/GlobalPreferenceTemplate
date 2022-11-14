@@ -914,7 +914,7 @@
   <main>
   <div id="app" class="bg-white mx-auto mt-5 mb-10 p-10 md:p-12 w-full md:w-5/6 max-w-screen-md" data-v-app="">
       
-      <div v-if="processed">
+      <!-- <div v-if="processed">
         <div v-if="showSpinner" class="flex justify-center items-center space-x-2">
           <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-600" role="status">
             <span class="visually-hidden">Loading...</span>
@@ -932,9 +932,30 @@
           </div>
         </div>
         
-      </div>
-      <div v-else>
+      </div> -->
+
+      <div> <!-- v-else -->
         <div v-if="showPage">
+
+          <!-- success and error banners-->
+       <div v-if="processed">
+        <div v-if="showSpinner" class="flex justify-center items-center space-x-2">
+          <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-600" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        <div v-else>
+          <div v-if="success">
+            <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Your changes have been saved.</h2>
+          </div>
+          <div v-if="error">
+            <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">{{ errorMessage }}</h2>
+          </div>
+        </div>
+        
+      </div> 
+      <!-- success and error banners-->
+
           <form>
             <div class="py-6">
               <h1 class="font-bold font-serif mb-3 text-xl md:text-2xl text-indigo-900">Manage your Preference Centre</h1>
