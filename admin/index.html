@@ -1039,37 +1039,6 @@
               To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           -->
 
-           <!-- success and error messages-->
-       <div v-if="processed">
-        <div v-if="showSpinner" class="flex justify-center items-center space-x-2">
-          <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-600" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </div>
-        <div v-else>
-          <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-              <div class="">
-                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                  <div v-if="success">
-                    <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Your changes have been saved.</h2>
-                  </div>
-                  <div v-if="error">
-                    <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">{{ errorMessage }}</h2>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-              <button @click="closeModal" type="button" class="mt-3 inline-flex w-full justify-center rounded-full border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">OK</button>
-            </div> 
-          </div>
-        </div>
-        
-      </div> 
-      <!-- success and error messages -->
-
-      <div v-else>
           <!-- delete warning -->
           <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg" v-if="updateData.action == 'Delete'">
             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -1107,13 +1076,72 @@
             </div> 
           </div>
           <!-- .add/edit form -->
-          </div>
-
         </div>
       </div>
     </div>
     <!-- .modal -->
 
+    <!-- confirmation-->
+    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" v-if="showConfirmation">
+
+      
+      <!--
+        Background backdrop, show/hide based on modal state.
+    
+        Entering: "ease-out duration-300"
+          From: "opacity-0"
+          To: "opacity-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
+      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+    
+      <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <!--
+            Modal panel, show/hide based on modal state.
+    
+            Entering: "ease-out duration-300"
+              From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              To: "opacity-100 translate-y-0 sm:scale-100"
+            Leaving: "ease-in duration-200"
+              From: "opacity-100 translate-y-0 sm:scale-100"
+              To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          -->
+
+          <!-- success and error messages-->
+       <div v-if="processed">
+        <div v-if="showSpinner" class="flex justify-center items-center space-x-2">
+          <div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-blue-600" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        <div v-else>
+          <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <div class="">
+                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                  <div v-if="success">
+                    <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">Your changes have been saved.</h2>
+                  </div>
+                  <div v-if="error">
+                    <h2 class="font-bold font-serif mb-3 text-lg text-indigo-900">{{ errorMessage }}</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+              <button @click="closeModal" type="button" class="mt-3 inline-flex w-full justify-center rounded-full border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">OK</button>
+            </div> 
+          </div>
+        </div>
+        
+      </div> 
+      <!-- success and error messages -->
+        </div>
+      </div>
+    </div>
       </div>
        
     </div>
@@ -1154,7 +1182,8 @@
               showModal: false,
               prev_ID: undefined,
               updateData: {},
-              errorMessage: "Oops, something went wrong."
+              errorMessage: "Oops, something went wrong.",
+              showConfirmation: false
             }
           },
           filters: {
@@ -1244,23 +1273,25 @@
                       if(this.responseData.status === 'OK'){
                         this.processed = true;
                         this.success = true;
-                        setTimeout(()=>{
-                          top.location.href = top.location.href;
-                        },3000)
-                        this.countDownTimer();
+                        this.showConfirmation = true;
+                        // setTimeout(()=>{
+                        //   top.location.href = top.location.href;
+                        // },3000)
+                        // this.countDownTimer();
                       } else if (this.responseData.status === 'FieldInUse') {
-                        this.showModal = true;
+                        this.showConfirmation = true;
                         this.error = true;
                         this.errorMessage = "The field you are trying to delete is currently in use and cannot be deleted.";
                         // setTimeout(()=>{
                         //   top.location.href = top.location.href;
                         // },3000)
                       } else {
+                        this.showConfirmation = true;
                         this.error = true;
                         this.errorMessage = "Oops, something went wrong.";
-                        setTimeout(()=>{
-                          top.location.href = top.location.href;
-                        },3000)
+                        // setTimeout(()=>{
+                        //   top.location.href = top.location.href;
+                        // },3000)
                       }
                     }).catch(err=>{
                       this.processed = true;
