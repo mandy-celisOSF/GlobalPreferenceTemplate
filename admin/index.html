@@ -1027,7 +1027,10 @@
               <div class="">
                 <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                   <h3 class="mb-6 text-lg font-medium leading-6 text-gray-900" id="modal-title">Delete a {{ updateData.type }} </h3>
-                  <p>Are you sure you want to delete <strong>{{ updateData.object.Category_ID}}</strong>?</p>
+                  <p>Are you sure you want to delete <strong>
+                    <span v-if="updateData.type == 'Category'">{{ updateData.object.Category_ID}}</span>
+                      <span v-else>{{ updateData.object.Preference_ID}}</span>
+                    </strong>?</p>
                 </div>
               </div>
             </div>
