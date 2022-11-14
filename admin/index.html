@@ -1213,9 +1213,9 @@
                       } else if (this.responseData.status === 'FieldInUse') {
                         this.error = true;
                         this.errorMessage = "The field you are trying to delete is currently in use and cannot be deleted.";
-                        setTimeout(()=>{
-                          top.location.href = top.location.href;
-                        },3000)
+                        // setTimeout(()=>{
+                        //   top.location.href = top.location.href;
+                        // },3000)
                       } else {
                         this.error = true;
                         this.errorMessage = "Oops, something went wrong.";
