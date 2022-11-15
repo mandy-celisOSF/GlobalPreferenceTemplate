@@ -1209,7 +1209,7 @@
               this.updateData.object = preference;
               this.showModal = true;
             },
-            addCategory () {
+            addCategory() {
               this.updateData.action = "Add";
               this.updateData.type = "Category";
               this.updateData.object = {
@@ -1220,7 +1220,7 @@
               };
               this.showModal = true;
             },
-            addPreference () {
+            addPreference() {
               this.updateData.action = "Add";
               this.updateData.type = "Preference";
               this.updateData.object = {
@@ -1338,7 +1338,7 @@
 
                       data.preferences.forEach(pref=>{
                           var each_pref = {...pref};
-                          each_pref.Label = data.pref_labels.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Label_Values;
+                          each_pref.Preference_Label = data.pref_labels.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Label_Values;
                           this.base_data.preferences.push(each_pref);
                       });
 
