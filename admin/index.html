@@ -1338,7 +1338,7 @@
 
                       data.preferences.forEach(pref=>{
                           var each_pref = {...pref};
-                          each_pref.label = data.pref_labels.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Label_Values;
+                          each_pref.Label = data.pref_labels.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Label_Values;
                           this.base_data.preferences.push(each_pref);
                       });
 
