@@ -1178,15 +1178,13 @@
             },
             updateFormValue($event, key) {
             this.updateData.object[key] = $event.target.value;
-        //console.log(this.updateData); 
-    },
+            //console.log(this.updateData); 
+            },
             editCategory (event, category) {
               event.preventDefault();
               this.updateData.action = "Edit";
               this.updateData.type = "Category";
               this.updateData.object = category;
-              this.previousData = Object.assign({}, this.updateData);
-              console.log(this.previousData);
               this.prev_ID = category.Category_ID;
               this.showModal = true;
             },
@@ -1239,9 +1237,6 @@
             },
             closeModal() {
               this.showModal = false;
-              this.updateData = Object.assign({}, this.previousData);
-              // console.log("Updated Data");
-              console.log(this.previousData);
               console.log(this.updateData);
               // console.log(this.prev_Category_ID);
             },
