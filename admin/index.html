@@ -1239,7 +1239,7 @@
             },
             closeModal() {
               this.showModal = false;
-              this.updateData.object = this.previousData.object;
+              this.updateData = Object.assign({}, this.previousData);
               // console.log("Updated Data");
               console.log(this.previousData);
               console.log(this.updateData);
