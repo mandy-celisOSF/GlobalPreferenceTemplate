@@ -1184,7 +1184,8 @@
               event.preventDefault();
               this.updateData.action = "Edit";
               this.updateData.type = "Category";
-              this.updateData.object = category;
+              this.previousData.object = category;
+              this.updateData.object = Object.assign({}, category);
               this.prev_ID = category.Category_ID;
               this.showModal = true;
             },
@@ -1199,7 +1200,7 @@
               event.preventDefault();
               this.updateData.action = "Edit";
               this.updateData.type = "Preference";
-              this.updateData.object = Object.assign({}, preference);
+              this.updateData.object = preference;
               console.log(this.updateData.object);
               this.prev_ID = preference.Preference_ID;
               this.showModal = true;
