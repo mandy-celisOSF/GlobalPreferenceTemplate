@@ -1185,6 +1185,8 @@
               this.updateData.action = "Edit";
               this.updateData.type = "Category";
               this.updateData.object = category;
+              this.previousData.object = category;
+              console.log(this.previousData);
               this.prev_ID = category.Category_ID;
               this.showModal = true;
             },
@@ -1237,8 +1239,10 @@
             },
             closeModal() {
               this.showModal = false;
+              this.updateData.object = this.previousData.object;
               // console.log("Updated Data");
-              //console.log(this.updateData);
+              console.log(this.previousData);
+              console.log(this.updateData);
               // console.log(this.prev_Category_ID);
             },
             closeConfirmation() {
