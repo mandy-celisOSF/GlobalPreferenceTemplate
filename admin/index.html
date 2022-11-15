@@ -937,7 +937,7 @@
                     <td class="w-1/5 p-3 text-center">{{ preference.Default_Values }}</td>
                     <td class="w-1/5 p-3 text-center">{{ preference.Category_ID }}</td>
                     <td class="w-1/5 p-3 text-center">
-                      <a @click="editPreference" href="#" class="text-indigo-600 underline">Edit</a> | 
+                      <a @click="editPreference($event, preference)" href="#" class="text-indigo-600 underline">Edit</a> | 
                       <a @click="deletePreference($event, preference)" href="#" class="text-indigo-600 underline">Delete</a></td>
                   </tr>
                 </thead>
@@ -1194,10 +1194,12 @@
               this.updateData.object = category;
               this.showModal = true;
             },
-            editPreference () {
+            editPreference(event, preference) {
+              event.preventDefault();
               this.updateData.action = "Edit";
               this.updateData.type = "Preference";
-              this.updateData.object = {};
+              this.updateData.object = preference;
+              this.prev_ID = preference.Preference_ID;
               this.showModal = true;
             },
             deletePreference(event, preference) {
