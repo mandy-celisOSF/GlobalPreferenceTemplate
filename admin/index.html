@@ -1185,7 +1185,7 @@
               this.updateData.action = "Edit";
               this.updateData.type = "Category";
               this.updateData.object = category;
-              this.previousData.object = Object.assign({}, this.updateData.object);
+              this.previousData = Object.assign({}, this.updateData);
               console.log(this.previousData);
               this.prev_ID = category.Category_ID;
               this.showModal = true;
