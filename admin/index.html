@@ -1199,7 +1199,8 @@
               event.preventDefault();
               this.updateData.action = "Edit";
               this.updateData.type = "Preference";
-              this.updateData.object = preference;
+              this.updateData.object = Object.assign({}, preference);
+              console.log(this.updateData.object);
               this.prev_ID = preference.Preference_ID;
               this.showModal = true;
             },
