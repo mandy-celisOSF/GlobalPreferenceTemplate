@@ -1339,6 +1339,7 @@
                       data.preferences.forEach(pref=>{
                           var each_pref = {...pref};
                           each_pref.Preference_Label = data.pref_labels.filter(item=>item.Preference_ID===pref.Preference_ID)[0].Label_Values;
+                          each_pref.Language_Code = this.base_config.admin_locale;
                           this.base_data.preferences.push(each_pref);
                       });
 
