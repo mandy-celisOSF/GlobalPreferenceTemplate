@@ -1185,7 +1185,10 @@
               this.updateData.action = "Edit";
               this.updateData.type = "Category";
               this.updateData.object = category;
-              this.previousData.object = category;
+              //this.previousData.object = category;
+              this.updateData.object.forEach((key, value) => {
+                this.previousData.object[key] = value;
+              });
               console.log(this.previousData);
               this.prev_ID = category.Category_ID;
               this.showModal = true;
