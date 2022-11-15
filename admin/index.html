@@ -1184,7 +1184,7 @@
               event.preventDefault();
               this.updateData.action = "Edit";
               this.updateData.type = "Category";
-              this.previousData.object = category;
+              //this.previousData.object = category;
               this.updateData.object = Object.assign({}, category);
               this.prev_ID = category.Category_ID;
               this.showModal = true;
@@ -1193,7 +1193,7 @@
               event.preventDefault();
               this.updateData.action = "Delete";
               this.updateData.type = "Category";
-              this.updateData.object = category;
+              this.updateData.object = Object.assign({}, category);
               this.showModal = true;
             },
             editPreference(event, preference) {
@@ -1239,7 +1239,7 @@
             },
             closeModal() {
               this.showModal = false;
-              console.log(this.updateData);
+              //console.log(this.updateData);
               // console.log(this.prev_Category_ID);
             },
             closeConfirmation() {
