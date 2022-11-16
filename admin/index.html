@@ -1285,12 +1285,6 @@
                 if(data.statusCode === 200){
                   this.showSpinner = false;
                   this.loginCompleted = true;
-                  // this.showSuccessMessage = true;
-                  // this.successMessage = 'Logged in successfully';
-                  // const dropdownEl = document.querySelector('[data-dropdown-toggle]');
-                  // if (dropdownEl) {
-                  //     dropdownEl.click();
-                  // }
                 }else if(data.statusCode === 401){
                   this.showSpinner = false;
                   this.showError = true;
@@ -1299,6 +1293,7 @@
                 console.log('err',err)
               }).finally(()=>{
                 this.showSuccessMessage = false;
+                sessionStorage.setItem("authenticated", true);
               })
             },
             doLogOut : function(event){
@@ -1306,7 +1301,8 @@
               this.loginCompleted = false;
               setTimeout(()=>{
                 this.showSpinner = false;
-              },3000)
+              },3000);
+              sessionStorage.setItem("authenticated", false);
             },
             countDownTimer () {
               if (this.countDown > 0) {
