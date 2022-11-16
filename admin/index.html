@@ -917,6 +917,25 @@
 
       <!-- logged in view -->  
       <div v-if="loginCompleted">
+        <div class="text-right">
+          <button @click="doLogOut()" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white">Log out</button>
+        </div>
+        <div v-if="showSuccessMessage">
+          <div id="success"
+            class="flex p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+            role="alert">
+            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <span class="sr-only">{{successMessage}}</span>
+            <div>
+              <span class="font-medium">{{successMessage}}</span>
+            </div>
+          </div>
+        </div>
         <div v-if="showPage">
           <form>
             <div class="py-6">
@@ -1218,6 +1237,9 @@
               errorMessage: "Oops, something went wrong.",
               showConfirmation: false,
               loginCompleted : false,
+              showError: false,
+              successMessage : 'Logged in successfully',
+              authenticated: sessionStorage.getItem('authenticated') === 'true',
               type:"text",
               headers : { "Content-Type": "application/json" },
               url : "https://mcpdwdml-zryw5dczwlf-f-f9kcm.pub.sfmc-content.com/a32jwmqkvaa",
@@ -1263,12 +1285,12 @@
                 if(data.statusCode === 200){
                   this.showSpinner = false;
                   this.loginCompleted = true;
-                  this.showSuccessMessage = true;
-                  this.successMessage = 'Logged in successfully';
-                  const dropdownEl = document.querySelector('[data-dropdown-toggle]');
-                  if (dropdownEl) {
-                      dropdownEl.click();
-                  }
+                  // this.showSuccessMessage = true;
+                  // this.successMessage = 'Logged in successfully';
+                  // const dropdownEl = document.querySelector('[data-dropdown-toggle]');
+                  // if (dropdownEl) {
+                  //     dropdownEl.click();
+                  // }
                 }else if(data.statusCode === 401){
                   this.showSpinner = false;
                   this.showError = true;
@@ -1278,6 +1300,13 @@
               }).finally(()=>{
                 this.showSuccessMessage = false;
               })
+            },
+            doLogOut : function(event){
+              this.showSpinner = true;
+              this.loginCompleted = false;
+              setTimeout(()=>{
+                this.showSpinner = false;
+              },3000)
             },
             countDownTimer () {
               if (this.countDown > 0) {
