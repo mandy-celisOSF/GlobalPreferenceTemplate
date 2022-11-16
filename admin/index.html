@@ -918,7 +918,7 @@
       <!-- logged in view -->  
       <div v-if="authenticated">
         <div class="text-right">
-          <button @click="doLogOut()" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white">Log out</button>
+          <button @click="doLogOut" class="rounded-full bg-indigo-600 hover:bg-indigo-800 px-6 py-3 text-white">Log out</button>
         </div>
         <div v-if="showSuccessMessage">
           <div id="success"
@@ -1286,10 +1286,12 @@
                   this.showSpinner = false;
                   this.loginCompleted = true;
                   sessionStorage.setItem("authenticated", true);
+                  this.authenticated = true;
                 }else if(data.statusCode === 401){
                   this.showSpinner = false;
                   this.showError = true;
                   sessionStorage.setItem("authenticated", false);
+                  this.authenticated = false;
                 }
               }).catch((err)=>{
                 console.log('err',err)
@@ -1304,6 +1306,7 @@
                 this.showSpinner = false;
               },3000);
               sessionStorage.setItem("authenticated", false);
+              this.authenticated = false;
             },
             countDownTimer () {
               if (this.countDown > 0) {
