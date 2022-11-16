@@ -1324,7 +1324,6 @@
               event.preventDefault();
               this.updateData.action = "Edit";
               this.updateData.type = "Category";
-              //this.previousData.object = category;
               this.updateData.object = Object.assign({}, category);
               this.prev_ID = category.Category_ID;
               this.showModal = true;
@@ -1489,7 +1488,7 @@
                     this.showPage = true;
                     this.showSpinner = false;
                     this.jsonStr = JSON.stringify(this.base_data, null, 2);
-                    console.log(this.base_data);
+                    //console.log(this.base_data);
                   });
                 
             },
