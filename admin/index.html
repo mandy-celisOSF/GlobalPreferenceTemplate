@@ -1309,6 +1309,8 @@
               },3000);
               sessionStorage.setItem("authenticated", false);
               this.authenticated = false;
+              this.user.user_name = '';
+              this.user.password = '';
             },
             countDownTimer () {
               if (this.countDown > 0) {
