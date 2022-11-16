@@ -1285,15 +1285,16 @@
                 if(data.statusCode === 200){
                   this.showSpinner = false;
                   this.loginCompleted = true;
+                  sessionStorage.setItem("authenticated", true);
                 }else if(data.statusCode === 401){
                   this.showSpinner = false;
                   this.showError = true;
+                  sessionStorage.setItem("authenticated", false);
                 }
               }).catch((err)=>{
                 console.log('err',err)
               }).finally(()=>{
                 this.showSuccessMessage = false;
-                sessionStorage.setItem("authenticated", true);
               })
             },
             doLogOut : function(event){
